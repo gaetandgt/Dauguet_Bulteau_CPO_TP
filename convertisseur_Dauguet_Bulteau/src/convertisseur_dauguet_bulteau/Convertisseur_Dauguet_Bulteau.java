@@ -18,6 +18,7 @@ public class Convertisseur_Dauguet_Bulteau {
      */
     public static void main(String[] args) {
         //Exercice 2
+        
         double Degrés;
         System.out.println("Saisissez une valeur");
         double valeur;
