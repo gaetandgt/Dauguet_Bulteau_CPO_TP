@@ -22,7 +22,6 @@ public class GuessMyNumber_Dauguet_Bulteau {
         
         int n= generateurAleat.nextInt(100);
         
-        
         Scanner sc;
         sc = new Scanner(System.in);
         System.out.println("Entrer un chiffre pour sélectionner le niveau de difficulté\n Taper 1 pour le niveau facile\n Taper 2 pour le niveau moyen (Vous avez un nombre de coup limité à 10)\n Taper 3 pour le niveau difficile (Vous avez un nombre de coup limité à 10 et l'intervalle est plus grand\n Taper 4 pour le niveau cauchemar, Attention ne soyez pas trop présomptueux");
