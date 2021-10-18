@@ -23,11 +23,11 @@ public class TP2_Biere_DAUGUET_BULTEAU {
         BouteilleBiere Biere3 = new BouteilleBiere("Corona", 5.4,"Mexico");
         uneBiere.lireEtiquette();
         uneBiere.Decapsuler();
-        uneBiere.Decapsuler();
+        
         uneBiere.toString();
         System.out.println(uneBiere.ouverte);
         System.out.println(uneBiere);
-        //System.out.println(uneBiere.toString);
+        
     }
     
     
