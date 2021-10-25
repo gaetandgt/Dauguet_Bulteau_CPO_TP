@@ -28,10 +28,10 @@ public class TP2_relation_1_Dauguet_Bulteau {
         bob.nbVoitures = 1 ;
         uneClio.Proprietaire = bob ;
         System.out.println("la premiere voiture de Bob est " + bob.liste_voitures[0] ) ;
-        bob.liste_voitures[1] = uneMicra ;
-        bob.nbVoitures = 2 ;
-        uneMicra.Proprietaire = bob ;
-        System.out.println("la deuxième voiture de Bob est " + bob.liste_voitures[1] ) ;
+        //bob.liste_voitures[1] = uneMicra ;
+        //bob.nbVoitures = 2 ;
+        //uneMicra.Proprietaire = bob ;
+        //System.out.println("la deuxième voiture de Bob est " + bob.liste_voitures[1] ) ;
         
         Reno.liste_voitures[0] = uneAutreClio ;
         Reno.nbVoitures = 1 ;
@@ -41,6 +41,13 @@ public class TP2_relation_1_Dauguet_Bulteau {
         Reno.nbVoitures = 2 ;
         une2008.Proprietaire = Reno ; 
         System.out.println("la deuxième voiture de Reno est " + Reno.liste_voitures[1] ) ;
+        
+        boolean retour;
+        retour=Reno.ajouter_voiture(uneMicra);
+        System.out.println(retour);
+        
+        System.out.println(Reno.liste_voitures[1]);
+        
     }
     
 }

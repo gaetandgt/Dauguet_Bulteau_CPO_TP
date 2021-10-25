@@ -34,7 +34,7 @@ public boolean ajouter_voiture( Voiture voiture_a_ajouter) {
     if (nbVoitures==3){
         return false;
     }
-    liste_voitures[nbVoitures-1]= voiture_a_ajouter;
+    liste_voitures[nbVoitures]= voiture_a_ajouter;
     nbVoitures=nbVoitures+1;
     voiture_a_ajouter.Proprietaire = this ; 
     return true;
