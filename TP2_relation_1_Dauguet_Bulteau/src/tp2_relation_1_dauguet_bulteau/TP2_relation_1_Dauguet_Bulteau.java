@@ -39,7 +39,7 @@ public class TP2_relation_1_Dauguet_Bulteau {
         System.out.println("la premiere voiture de Reno est " + Reno.liste_voitures[0] ) ;
         Reno.liste_voitures[1] = une2008 ;
         Reno.nbVoitures = 2 ;
-        une2008.Proprietaire = Reno ;
+        une2008.Proprietaire = Reno ; 
         System.out.println("la deuxième voiture de Reno est " + Reno.liste_voitures[1] ) ;
     }
     
