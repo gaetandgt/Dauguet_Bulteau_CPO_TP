@@ -9,12 +9,12 @@ package sp4_console_dauguet_bulteau;
  * @author bulte
  */
 public class Jeton {
-    String couleur;
-    public void jeton(String unecouleur){
-        couleur=unecouleur;
+    String Couleur;
+    public Jeton(String unecouleur){
+        Couleur=unecouleur;
     }
     public String lireCouleur(){
-        return(couleur);
+        return(Couleur);
     }
     
 }

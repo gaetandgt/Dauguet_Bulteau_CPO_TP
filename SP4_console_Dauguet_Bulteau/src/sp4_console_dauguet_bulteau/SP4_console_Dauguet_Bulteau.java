@@ -14,7 +14,11 @@ public class SP4_console_Dauguet_Bulteau {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Joueur J1;
+        Joueur J2;
+        Partie(J1,J2);
+        Partie.initialiserPartie();
+        Partie.debuterPartie();
     }
     
 }
