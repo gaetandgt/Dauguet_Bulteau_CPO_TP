@@ -19,6 +19,10 @@ public class SP4_console_Dauguet_Bulteau {
         Partie(J1,J2);
         Partie.initialiserPartie();
         Partie.debuterPartie();
+        
+    
+        
+    
     }
     
 }

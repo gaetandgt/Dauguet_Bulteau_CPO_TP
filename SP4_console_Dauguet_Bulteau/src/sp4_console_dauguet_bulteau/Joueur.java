@@ -24,7 +24,7 @@ public void affecterColeur(String uneCouleur){
 }
    
 public boolean ajouterJeton(Jeton nombre){
-    listeJetons[]=nombre;
+    ListeJetons[nombreJetonsRestants]=nombre;
     //voir tp ajouter jeton de la liste
 }
 
