@@ -24,6 +24,11 @@ public void affecterColeur(String uneCouleur){
 }
    
 public boolean ajouterJeton(Jeton nombre){
+    
+    
+    // Attention a cette histoire de 21 ça devra peut-être être modifier tout- à l'heure
+    
+    
     if (nombreJetonsRestants!=21){
         ListeJetons[nombreJetonsRestants]=nombre;
         return true;
