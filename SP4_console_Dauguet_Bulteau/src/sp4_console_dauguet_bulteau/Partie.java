@@ -9,7 +9,7 @@ package sp4_console_dauguet_bulteau;
  * @author bulte
  */
 public class Partie {
-    Joueur [2] ListeJoueurs;
+    Joueur [] ListeJoueurs= new Joueur[2];
     Joueur joueurCourant;
     Grille grillejeu;
     
