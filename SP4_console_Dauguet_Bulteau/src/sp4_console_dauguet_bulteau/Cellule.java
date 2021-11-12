@@ -78,9 +78,14 @@ public boolean recupererDesintegrateur(){
 }
 
 public boolean activerTrouNoir(){
-    
+    if(trouNoir==true & jetonCourant!=null){
+    jetonCourant=null;
+    trouNoir=false;
+    return true;
 }
-
+    else{
+        return false;
+    }
 }
 
 
