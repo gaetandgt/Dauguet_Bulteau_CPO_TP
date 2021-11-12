@@ -39,6 +39,13 @@ public boolean supprimerJeton(){
 }
 
 public boolean placerTrouNoir(){
+    if (trouNoir==false){
+        trouNoir=true;
+        return true;
+    }
+    else{
+        return false;
+    }
     
 }
 
@@ -47,6 +54,9 @@ public boolean placerDesintegrateur(){
 }
 
 public boolean presenceTrouNoir(){
+    if (trouNoir==true){
+        return true;
+    }
     
 }
 
