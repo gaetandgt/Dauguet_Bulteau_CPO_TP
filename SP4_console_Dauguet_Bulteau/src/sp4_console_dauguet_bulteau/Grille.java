@@ -12,6 +12,12 @@ public class Grille {
     Cellule [][] CellulesJeu= new Cellule[6][7];
     
 public Grille(){
+    for (int i=0; i<7; i++){
+        for (int j=0; j<6; j++){
+            CellulesJeu[j][i]=null;
+        }
+    }
+        
     CellulesJeu=null;
 }
 
@@ -44,12 +50,26 @@ public void viderGrille(){
 }
 
 public void afficherGrilleSurConsole(){
-    System.out.println(CellulesJeu);
-    //
-}
+        for (int i=0;i<6;i++){
+            for (int j=0;j<7;j++){
+                if (celluleOccupee(i, j)==true){
+                    if (lireCouleurDuJeton(i, j)=="Rouge"){
+                        System.out.print("\033[31m O  ");
+                    }else{
+                        System.out.print("\033[33m O  ");
+                    }
+                }else{
+                    System.out.print("\033[37m O  ");
+                }
+
+            }
+            System.out.println("");
+        }
+
+    }
 
 public boolean celluleOccupee(int nb1, int nb2){
-    if (CellulesJeu[nb1-1][nb2-1]!=null){
+    if (CellulesJeu[nb1][nb2]!=null){
         return true;
     }
     else{
@@ -70,9 +90,11 @@ public boolean etreGagnantePourJoueur(Joueur joueur){
             break;
         }
         for(i=0;i<4;i++){
-            if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+3].jetonCourant.Couleur==joueur.Couleur){
-                val=1;
-                break;
+            if (celluleOccupee(j,i)==true && celluleOccupee(j,i+1)==true && celluleOccupee(j,i+2)==true && celluleOccupee(j,i+3)==true){
+                if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+3].jetonCourant.Couleur==joueur.Couleur){
+                    val=1;
+                    break;
+                }
             }
         }
     }
@@ -80,11 +102,12 @@ public boolean etreGagnantePourJoueur(Joueur joueur){
         if (val==1){
             break;
         }
-        for(i=0;i<7;i++){
-            
-            if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i].jetonCourant.Couleur==joueur.Couleur){
-                val=1;
-                break;
+        for(i=0;i<4;i++){
+            if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i)==true && celluleOccupee(j+2,i)==true && celluleOccupee(j+3,i)==true){
+                if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i].jetonCourant.Couleur==joueur.Couleur){
+                    val=1;
+                    break;
+                }
             }
         }
     }
@@ -94,9 +117,11 @@ public boolean etreGagnantePourJoueur(Joueur joueur){
             break;
         }
         for(i=0;i<4;i++){
-            if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i+3].jetonCourant.Couleur==joueur.Couleur){
-                val=1;
-                break;
+            if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i+1)==true && celluleOccupee(j+2,i+2)==true && celluleOccupee(j+3,i+3)==true){
+                if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i+3].jetonCourant.Couleur==joueur.Couleur){
+                    val=1;
+                    break;
+                }
             }
         }
     }
@@ -106,9 +131,11 @@ public boolean etreGagnantePourJoueur(Joueur joueur){
             break;
         }
         for(i=6;i<3;i--){
-            if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i-1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i-2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i-3].jetonCourant.Couleur==joueur.Couleur){
-                val=1;
-                break;
+            if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i-1)==true && celluleOccupee(j+2,i-2)==true && celluleOccupee(j+3,i-3)==true){
+                if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i-1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i-2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i-3].jetonCourant.Couleur==joueur.Couleur){
+                    val=1;
+                    break;
+                }
             }
         }
     }

@@ -35,7 +35,13 @@ public Jeton recupererJeton(){
 }
 
 public boolean supprimerJeton(){
-    jetonCourant=null;
+    if (jetonCourant!=null){
+        jetonCourant=null;
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 public boolean placerTrouNoir(){

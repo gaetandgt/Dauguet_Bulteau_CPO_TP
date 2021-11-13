@@ -22,7 +22,7 @@ public Partie(Joueur a, Joueur b){
 }
 
 public void initialiserPartie(){
-    Grille grillejeu[][]= new Grille[6][7];
+    grillejeu= new Grille();
     for(int i=0; i<21; i++){
         Jeton Jeton1=new Jeton("Rouge");
         Jeton Jeton2=new Jeton("Jaune");
@@ -38,18 +38,42 @@ public void initialiserPartie(){
 }
 
 Scanner sc = new Scanner(System.in) ;
+
 public void debuterPartie(){
     System.out.println("C'est l'heure du duel");
-    while(grillejeu.etreGagnantePourJoueur(joueurCourant)!=true){
+    int Joue;
+    Random sort = new Random();
+    Joue = sort.nextInt(2);
+    if (Joue==1){
+        ListeJoueurs[0]=joueurCourant;
+    }
+    else{
+        ListeJoueurs[1]=joueurCourant;
+    }
+    int i=0;
+    int j=0;
+    while(grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])!=true && grillejeu.etreGagnantePourJoueur(ListeJoueurs[1])!=true){
         String Colonne;
         System.out.println("Entrez la colonne dans laquelle vous désirez jouer, vous mettrez un chiffre");
         Colonne = sc.next() ;
+        System.out.println("C'est au tour du joueur"+ joueurCourant);
         while (Colonne!="1" & Colonne!="2" & Colonne!="3" & Colonne!="4" & Colonne!="5" & Colonne!="6" & Colonne!="7"){
             System.out.println("erreur, retapez la colonne");
             Colonne = sc.next() ;
         }
         int Col= Integer.parseInt(Colonne);
         
+        Jeton Jet;
+        if (joueurCourant.Couleur=="Rouge"){
+            Jet=joueurCourant.ListeJetons[i];
+            i++;
+        }
+        else{
+            Jet=joueurCourant.ListeJetons[j];
+            j++;
+        }
+        
+        grillejeu.ajouterJetonDansLaColonne(Jet, Col);
         
         
         
