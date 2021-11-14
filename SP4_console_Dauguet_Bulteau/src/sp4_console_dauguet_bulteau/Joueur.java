@@ -11,7 +11,7 @@ package sp4_console_dauguet_bulteau;
 public class Joueur {
     String Nom;
     String Couleur;
-    Jeton [] ListeJetons;
+    Jeton [] ListeJetons= new Jeton[21];
     int nombreDesintegrateurs;
     int nombreJetonsRestants;
     

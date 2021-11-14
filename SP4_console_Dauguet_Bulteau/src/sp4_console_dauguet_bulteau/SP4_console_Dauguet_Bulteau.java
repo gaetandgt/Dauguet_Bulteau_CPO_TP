@@ -27,12 +27,13 @@ public class SP4_console_Dauguet_Bulteau {
        System.out.println("Veuillez entrer le nom du deuxième joueur:") ;
        joueur2 = sc.next() ;
        Joueur J2 = new Joueur(joueur2)  ;
-        
+       System.out.println(J1);
+       System.out.println(J2);
     
-        Partie unePartie= new Partie(J1,J2);
-        unePartie.attribuerCouleursAuxJoueurs();
-        unePartie.initialiserPartie();
-        unePartie.debuterPartie();
+       Partie unePartie= new Partie(J1,J2);
+       unePartie.attribuerCouleursAuxJoueurs();
+       unePartie.initialiserPartie();
+       unePartie.debuterPartie();
     }
     
 }
