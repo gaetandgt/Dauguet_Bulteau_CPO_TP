@@ -31,7 +31,7 @@ public class SP4_console_Dauguet_Bulteau {
        System.out.println(J2);
     
        Partie unePartie= new Partie(J1,J2);
-       unePartie.attribuerCouleursAuxJoueurs();
+       unePartie.attribuerCouleursAuxJoueurs(); 
        unePartie.initialiserPartie();
        unePartie.debuterPartie();
     }
