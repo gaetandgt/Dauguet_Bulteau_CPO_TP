@@ -62,7 +62,7 @@ public void debuterPartie(){
     while(grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])!=true && grillejeu.etreGagnantePourJoueur(ListeJoueurs[1])!=true){
         
         String Colonne;
-        System.out.println("C'est au tour du joueur "+ joueurCourant);
+        System.out.println("C'est au tour du joueur "+ joueurCourant.Nom);
         System.out.println("Entrez la colonne dans laquelle vous désirez jouer, vous mettrez un chiffre");
         Colonne = sc.next() ;
         
