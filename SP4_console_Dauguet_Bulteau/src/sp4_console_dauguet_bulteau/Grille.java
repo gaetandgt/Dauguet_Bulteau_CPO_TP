@@ -46,7 +46,11 @@ public boolean etreRemplie(){
 }  
 
 public void viderGrille(){
-    CellulesJeu=null;
+    for (int i=0; i<6; i++){
+        for (int j=0; i<7; j++){
+            CellulesJeu[i][j].jetonCourant=null;
+        }
+    }
 }
 
 public void afficherGrilleSurConsole(){
