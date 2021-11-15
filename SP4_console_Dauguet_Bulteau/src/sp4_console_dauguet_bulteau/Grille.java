@@ -157,11 +157,17 @@ public boolean colonneRemplie(int cln){
 }
 
 public boolean placerDesintegrateur(int lg, int cln){
-    
+    if(CellulesJeu[lg][cln].presenceDesintegrateurs()){
+        CellulesJeu[lg][cln].placerDesintegrateur();
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 public boolean placerTrouNoir(int lg, int cln){
-    if(CellulesJeu[lg][cln]==null){
+    if(CellulesJeu[lg][cln].presenceTrouNoir()){
         CellulesJeu[lg][cln].placerTrouNoir();
         return true;
     }
@@ -172,8 +178,17 @@ public boolean placerTrouNoir(int lg, int cln){
 }
 
 public boolean supprimerJeton(int lg, int cln){
-    
+    if(celluleOccupee(lg,cln)==true){
+        CellulesJeu[lg][cln].jetonCourant=null;
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
+public Jeton recupererJeton(int lg, int cln){
+     CellulesJeu[lg][cln].jetonCourant=null;
+     return CellulesJeu[lg][cln].recupererJeton();
 }
 
