@@ -152,7 +152,7 @@ public void tasserGrille(int num){
     
 }
 
-public boolean colonneRemplie(int col){
+public boolean colonneRemplie(int cln){
     
 }
 
@@ -161,6 +161,13 @@ public boolean placerDesintegrateur(int lg, int cln){
 }
 
 public boolean placerTrouNoir(int lg, int cln){
+    if(CellulesJeu[lg][cln]==null){
+        CellulesJeu[lg][cln].placerTrouNoir();
+        return true;
+    }
+    else{
+        return false;
+    }
     
 }
 
