@@ -195,4 +195,5 @@ public Jeton recupererJeton(int lg, int cln){
      CellulesJeu[lg][cln].jetonCourant=null;
      return CellulesJeu[lg][cln].recupererJeton();
 }
+}
 
