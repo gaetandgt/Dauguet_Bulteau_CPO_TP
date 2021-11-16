@@ -80,6 +80,24 @@ public void debuterPartie(){
             }
         }
         
+        while (grillejeu.celluleOccupee(5,Col-1)!=false){
+            
+            test=1;
+            System.out.println("la colonne est pleine, choisissez ");
+            while (test!=0){
+                test=0;
+                try{
+                    Col=sc.nextInt();
+                }
+                catch(Exception e){
+                    test=1;
+                    System.out.println("erreur");
+                    sc.reset();
+                    sc.next();
+                }
+            }
+            
+        }
         System.out.println(Col);
         
         //if celluleOccupee()
