@@ -22,7 +22,7 @@ public Grille (){
 public boolean ajouterJetonDansLaColonne(Jeton unJeton, int Colonne){
     
     int a=0;
-    System.out.println("scqf");
+    
     if (CellulesJeu[5][Colonne-1].jetonCourant!=null){
         return false;
     }
@@ -54,23 +54,28 @@ public void viderGrille(){
 }
 
 public void afficherGrilleSurConsole(){
-        for (int i=0;i<6;i++){
-            for (int j=0;j<7;j++){
-                if (celluleOccupee(i, j)==false){
-                    if (lireCouleurDuJeton(i, j)=="Rouge"){
-                        System.out.print("\033[31m O  ");
-                    }else{
-                        System.out.print("\033[33m O  ");
-                    }
-                }else{
-                    System.out.print("\033[37m O  ");
+    System.out.println("affichage grille");
+    for (int i=5;i>=0;i--){
+        for (int j=0;j<7;j++){
+            if (celluleOccupee(i,j)==true){
+                
+                if (lireCouleurDuJeton(i,j)=="Rouge"){
+                    System.out.print("\033[31m O  ");
                 }
-
+                else{
+                    System.out.print("\033[33m O  ");
+                }
             }
-            System.out.println("");
+            
+            else{
+                System.out.print("\033[37m O  ");
+            }
+            
         }
-
+        System.out.println("");
     }
+
+}
 
 public boolean celluleOccupee(int nb1, int nb2){
     if (CellulesJeu[nb1][nb2].jetonCourant!=null){
@@ -87,77 +92,69 @@ public String lireCouleurDuJeton(int num1, int num2){
 }
 
 public boolean etreGagnantePourJoueur(Joueur joueur){
-    int val=0;
+    
     int j;
     int i;
-    for(j=0;j<6;j++){
-        if (val==1){
-            break;
-        }
-        for(i=0;i<4;i++){
-            if (celluleOccupee(j,i)==true && celluleOccupee(j,i+1)==true && celluleOccupee(j,i+2)==true && celluleOccupee(j,i+3)==true){
-                if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j][i+3].jetonCourant.Couleur==joueur.Couleur){
-                    val=1;
-                    break;
+    for(i=0;i<6;i++){
+    //for(j=0;j<3;j++){    
+        for(j=0;j<4;j++){
+        //for(i=0;i<6;i++){
+            if (celluleOccupee(i,j)==true && celluleOccupee(i,j+1)==true && celluleOccupee(i,j+2)==true && celluleOccupee(i,j+3)==true){
+                if (CellulesJeu[i][j].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[i][j+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[i][j+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[i][j+3].jetonCourant.Couleur==joueur.Couleur){
+                    return true;
                 }
             }
         }
     }
     for(j=0;j<3;j++){
-        if (val==1){
-            break;
-        }
-        for(i=0;i<4;i++){
+        
+        
+        for(i=0;i<7;i++){
             if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i)==true && celluleOccupee(j+2,i)==true && celluleOccupee(j+3,i)==true){
                 if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i].jetonCourant.Couleur==joueur.Couleur){
-                    val=1;
-                    break;
+                    return true;
                 }
             }
         }
     }
     
     for(j=0;j<3;j++){
-        if (val==1){
-            break;
-        }
+        
         for(i=0;i<4;i++){
             if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i+1)==true && celluleOccupee(j+2,i+2)==true && celluleOccupee(j+3,i+3)==true){
                 if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i+3].jetonCourant.Couleur==joueur.Couleur){
-                    val=1;
-                    break;
+                    return true;
                 }
             }
         }
     }
     
     for(j=0;j<3;j++){
-        if (val==1){
-            break;
-        }
-        for(i=6;i<3;i--){
+        
+        for(i=6;i>3;i--){
             if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i-1)==true && celluleOccupee(j+2,i-2)==true && celluleOccupee(j+3,i-3)==true){
                 if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i-1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i-2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i-3].jetonCourant.Couleur==joueur.Couleur){
-                    val=1;
-                    break;
+                    return true;
                 }
             }
         }
     }
-    if (val==1){
-        return true;
-    }
-    else{
-        return false;
-    }
+    
+    return false;
+    
 }
 
 public void tasserGrille(int num){
     
 }
 
-public boolean colonneRemplie(int cln){
-    
+public boolean colonneRemplie(int col){
+    if (CellulesJeu[5][col].jetonCourant!=null){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 public boolean placerDesintegrateur(int lg, int cln){
@@ -178,7 +175,6 @@ public boolean placerTrouNoir(int lg, int cln){
     else{
         return false;
     }
-    
 }
 
 public boolean supprimerJeton(int lg, int cln){
@@ -195,5 +191,7 @@ public Jeton recupererJeton(int lg, int cln){
      CellulesJeu[lg][cln].jetonCourant=null;
      return CellulesJeu[lg][cln].recupererJeton();
 }
+
 }
+
 

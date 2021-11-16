@@ -54,42 +54,108 @@ Scanner sc = new Scanner(System.in) ;
 
 public void debuterPartie(){
     System.out.println("C'est l'heure du duel");
-    
+    int Colo;
+    int Ligne;
     
     int i=0;
     int j=0;
     grillejeu.afficherGrilleSurConsole();
     while(grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])!=true && grillejeu.etreGagnantePourJoueur(ListeJoueurs[1])!=true){
         
-        String Colonne;
-        System.out.println("C'est au tour du joueur "+ joueurCourant.Nom);
-        System.out.println("Entrez la colonne dans laquelle vous désirez jouer, vous mettrez un chiffre");
-        Colonne = sc.next() ;
         
+        System.out.println("C'est au tour du joueur "+ ListeJoueurs[0].Nom);
+        System.out.println("Tapez 1 pour placer un pion, 2 pour placer un Desintegrateurs, 3 pour recuperer un jeton");
         
-        System.out.println(Colonne);
-        //while (Colonne!="1" && Colonne!="2" && Colonne!="3" && Colonne!="4" && Colonne!="5" && Colonne!="6" && Colonne!="7"){
-        //    System.out.println("erreur, retapez la colonne");
-        //    Colonne = sc.next() ;
-        //}
-        int Col= Integer.parseInt(Colonne);
-        
-        System.out.println(Col);
-        Jeton Jet;
-        if (joueurCourant.Couleur=="Rouge"){
-            Jet=joueurCourant.ListeJetons[i];
-            i++;
+        int Col=0;
+        int test=1;
+        while (test!=0){
+            test=0;
+            try{
+                Col=sc.nextInt();
+            }
+            catch(Exception e){
+                test=1;
+                System.out.println("erreur");
+                sc.reset();
+                sc.next();
+            }
         }
-        else{
-            Jet=joueurCourant.ListeJetons[j];
-            j++;
+        if (Col==1){
+            System.out.println("Entrez la colone dans laquelle vous allez jouer");
+            
+            test=1;
+            while (test!=0){
+                test=0;
+                try{
+                    Col=sc.nextInt();
+                }
+                catch(Exception e){
+                    test=1;
+                    System.out.println("erreur");
+                    sc.reset();
+                    sc.next();
+                }
+            }
+            
+            while (grillejeu.colonneRemplie(Col-1)!=false){
+            
+                test=1;
+                System.out.println("la colonne est pleine, choisissez de nouveau");
+                while (test!=0){
+                    test=0;
+                    try{
+                        Col=sc.nextInt();
+                    }
+                    catch(Exception e){
+                        test=1;
+                        System.out.println("erreur");
+                        sc.reset();
+                        sc.next();
+                    }
+                }
+
+            }
+            System.out.println(Col);
+
+            //if celluleOccupee()
+
+            Jeton Jet;
+            if (joueurCourant.Couleur=="Rouge"){
+                Jet=joueurCourant.ListeJetons[i];
+                i++;
+            }
+            else{
+                Jet=joueurCourant.ListeJetons[j];
+                j++;
+            }
+
+            grillejeu.ajouterJetonDansLaColonne(Jet, Col);
+            
         }
-        System.out.println("test1");
-        grillejeu.ajouterJetonDansLaColonne(Jet, Col);
+
+        if (Col==2){
+            System.out.println("Entrez la colonne");
+            Colo=sc.nextInt();
+            System.out.println("Entrez la ligne");
+            Ligne=sc.nextInt();
+            
+            grillejeu.placerDesintegrateur(Colo, Ligne);
+        }
+        if (Col==3){
+            System.out.println("Entrez la colonne");
+            Colo=sc.nextInt();
+            System.out.println("Entrez la ligne");
+            Ligne=sc.nextInt();
+            
+            grillejeu.recupererJeton(Colo, Ligne);
+        }
+        
         grillejeu.afficherGrilleSurConsole();
+        
         //if (grillejeu.etreGagnantePourJoueur(joueurCourant)==true){
         //    break;
         //}
+        
         if (ListeJoueurs[0]==joueurCourant){
             joueurCourant=ListeJoueurs[1];
         }
@@ -97,7 +163,11 @@ public void debuterPartie(){
             joueurCourant=ListeJoueurs[0];
         }
         
-        System.out.println("bj");
+        if (grillejeu.etreRemplie()==true){
+            grillejeu.viderGrille();
+            grillejeu.afficherGrilleSurConsole();
+        }
+        
     }
 }
 
