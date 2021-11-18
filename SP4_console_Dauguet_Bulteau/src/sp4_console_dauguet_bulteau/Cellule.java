@@ -31,7 +31,7 @@ public boolean affecterJeton(Jeton jeton){
 }
 
 public Jeton recupererJeton(){
-    
+    return jetonCourant;
 }
 
 public boolean supprimerJeton(){
@@ -56,18 +56,29 @@ public boolean placerTrouNoir(){
 }
 
 public boolean placerDesintegrateur(){
-    
+    if(desintegrateur==false){
+        desintegrateur=true;
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 public boolean presenceTrouNoir(){
     if (trouNoir==true){
         return true;
     }
-    
+    return false;
 }
 
 public boolean presenceDesintegrateurs(){
-    
+    if (desintegrateur==true){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 public String lireCouleurDuJeton(){
@@ -80,15 +91,23 @@ public String lireCouleurDuJeton(){
 }
 
 public boolean recupererDesintegrateur(){
-    
-}
+    if(desintegrateur==true){
+        desintegrateur=false;
+        return true;
+    }
+    else{
+        return false;
+    }
+
+    }
 
 public boolean activerTrouNoir(){
     if(trouNoir==true & jetonCourant!=null){
         jetonCourant=null;
         trouNoir=false;
         return true;
-}
+    }
+
     else{
         return false;
     }
