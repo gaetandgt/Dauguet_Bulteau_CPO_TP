@@ -42,7 +42,6 @@ public void initialiserPartie(){
     
     int compteur=0;
     while(compteur<5){
-        System.out.println("ok");
         Random Aleat=new Random();
         int lg=Aleat.nextInt(6);
         int cln=Aleat.nextInt(7);
@@ -51,6 +50,19 @@ public void initialiserPartie(){
         compteur=compteur+1;
         }
     }
+    
+    int compteur2=0;
+    while(compteur2<5){
+        System.out.println("ok");
+        Random Aleat=new Random();
+        int lg=Aleat.nextInt(6);
+        int cln=Aleat.nextInt(7);
+        if(grillejeu.placerDesintegrateur(lg, cln)==true){
+        grillejeu.placerDesintegrateur(lg, cln); 
+        compteur2=compteur2+1;
+        }
+    }
+    
     for(int i=0; i<21; i++){
         Jeton Jeton1=new Jeton("Rouge");
         Jeton Jeton2=new Jeton("Jaune");
