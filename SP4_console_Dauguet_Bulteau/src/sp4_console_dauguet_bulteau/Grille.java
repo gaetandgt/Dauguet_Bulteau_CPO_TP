@@ -64,26 +64,20 @@ public void afficherGrilleSurConsole(){
                 if (lireCouleurDuJeton(i,j)=="Rouge"){
                     System.out.print("\033[31m O  ");
                 }
-                else if(CellulesJeu[i][j].presenceTrouNoir()==true){
-                System.out.print("\033[35m O  ");
-                }
                 else{
                     System.out.print("\033[33m O  ");
                 }
-            }
-            
+            }else if(CellulesJeu[i][j].presenceTrouNoir()==true){
+                System.out.print("\033[35m O  ");
+            }   
             else{
                 System.out.print("\033[37m O  ");
-            }
-            if(CellulesJeu[i][j].presenceTrouNoir()==true){
-                System.out.print("\033[35m O  ");
-            }
-            
-        }
-        System.out.println("");
+                }
+            }   
+        System.out.println("");   
     }
-
 }
+
 
 public boolean celluleOccupee(int nb1, int nb2){
     if (CellulesJeu[nb1][nb2].jetonCourant!=null){
@@ -173,7 +167,7 @@ public boolean colonneRemplie(int col){
 }
 
 public boolean placerDesintegrateur(int lg, int cln){
-    if(CellulesJeu[lg][cln].presenceDesintegrateurs()){
+    if(CellulesJeu[lg][cln].presenceDesintegrateurs()==false){
         CellulesJeu[lg][cln].placerDesintegrateur();
         return true;
     }

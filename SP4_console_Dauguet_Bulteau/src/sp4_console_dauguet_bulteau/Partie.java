@@ -110,7 +110,7 @@ public void debuterPartie(){
             }
         }
         if (Col==1){
-            System.out.println("Entrez la colone dans laquelle vous allez jouer");
+            System.out.println("Entrez la colonne dans laquelle vous allez jouer");
             
             test=1;
             while (test!=0){
@@ -157,11 +157,14 @@ public void debuterPartie(){
                 Jet=joueurCourant.ListeJetons[j];
                 j++;
             }
-
-            grillejeu.ajouterJetonDansLaColonne(Jet, Colo);
-            
+        
+            grillejeu.ajouterJetonDansLaColonne(Jet, Colo);     
         }
-
+        for(int y=0; y<6; y++){
+            if (grillejeu.CellulesJeu[y][Colo-1].presenceTrouNoir() && grillejeu.celluleOccupee(y,Colo-1)){
+                            grillejeu.CellulesJeu[y][Colo-1].activerTrouNoir();
+            }
+        }
         if (Col==2){
             System.out.println("Entrez la colonne");
             Colo=sc.nextInt();
@@ -245,7 +248,5 @@ public void attribuerCouleursAuxJoueurs(){
         ListeJoueurs[1].Couleur="Rouge";
         ListeJoueurs[0].Couleur="Jaune";
     }
-    
-}
-
+    }
 }
