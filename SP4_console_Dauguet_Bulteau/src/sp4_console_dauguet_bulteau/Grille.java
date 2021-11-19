@@ -8,6 +8,7 @@ package sp4_console_dauguet_bulteau;
  *
  * @author bulte
  */
+import java.util.Random;
 public class Grille {
     Cellule [][] CellulesJeu= new Cellule[6][7];
     
@@ -57,6 +58,7 @@ public void afficherGrilleSurConsole(){
     System.out.println("affichage grille");
     for (int i=5;i>=0;i--){
         for (int j=0;j<7;j++){
+            
             if (celluleOccupee(i,j)==true){
                 
                 if (lireCouleurDuJeton(i,j)=="Rouge"){
@@ -65,17 +67,17 @@ public void afficherGrilleSurConsole(){
                 else{
                     System.out.print("\033[33m O  ");
                 }
-            }
-            
+            }else if(CellulesJeu[i][j].presenceTrouNoir()==true){
+                System.out.print("\033[35m O  ");
+            }   
             else{
                 System.out.print("\033[37m O  ");
-            }
-            
-        }
-        System.out.println("");
+                }
+            }   
+        System.out.println("");   
     }
-
 }
+
 
 public boolean celluleOccupee(int nb1, int nb2){
     if (CellulesJeu[nb1][nb2].jetonCourant!=null){
@@ -145,9 +147,9 @@ public boolean etreGagnantePourJoueur(Joueur joueur){
 }
 
 public void tasserGrille(int numC){
-    for(int i=0 ; i>6 ; i++){
+    for(int i=0 ; i<6 ; i++){
         if (celluleOccupee(i ,numC)==false){
-           for(int j=0 ; j<6 ; j++){
+           for(int j=i ; j<5 ; j++){
                CellulesJeu[j][numC].jetonCourant=CellulesJeu[j+1][numC].jetonCourant;
            }
            CellulesJeu[5][numC].jetonCourant=null;
@@ -165,7 +167,7 @@ public boolean colonneRemplie(int col){
 }
 
 public boolean placerDesintegrateur(int lg, int cln){
-    if(CellulesJeu[lg][cln].presenceDesintegrateurs()){
+    if(CellulesJeu[lg][cln].presenceDesintegrateurs()==false){
         CellulesJeu[lg][cln].placerDesintegrateur();
         return true;
     }
@@ -175,7 +177,7 @@ public boolean placerDesintegrateur(int lg, int cln){
 }
 
 public boolean placerTrouNoir(int lg, int cln){
-    if(CellulesJeu[lg][cln].presenceTrouNoir()){
+    if(CellulesJeu[lg][cln].presenceTrouNoir()==false){
         CellulesJeu[lg][cln].placerTrouNoir();
         return true;
     }

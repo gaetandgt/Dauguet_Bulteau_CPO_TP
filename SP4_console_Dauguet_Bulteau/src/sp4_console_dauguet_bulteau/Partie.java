@@ -8,6 +8,11 @@ package sp4_console_dauguet_bulteau;
  *
  * @author bulte
  */
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 import java.util.Random;
 import java.util.Scanner;
 public class Partie {
@@ -34,6 +39,30 @@ public Partie(Joueur a, Joueur b){
 
 public void initialiserPartie(){
     grillejeu= new Grille();
+    
+    int compteur=0;
+    while(compteur<5){
+        Random Aleat=new Random();
+        int lg=Aleat.nextInt(6);
+        int cln=Aleat.nextInt(7);
+        if(grillejeu.placerTrouNoir(lg, cln)==true){
+        grillejeu.placerTrouNoir(lg, cln); 
+        compteur=compteur+1;
+        }
+    }
+    
+    int compteur2=0;
+    while(compteur2<5){
+        System.out.println("ok");
+        Random Aleat=new Random();
+        int lg=Aleat.nextInt(6);
+        int cln=Aleat.nextInt(7);
+        if(grillejeu.placerDesintegrateur(lg, cln)==true){
+        grillejeu.placerDesintegrateur(lg, cln); 
+        compteur2=compteur2+1;
+        }
+    }
+    
     for(int i=0; i<21; i++){
         Jeton Jeton1=new Jeton("Rouge");
         Jeton Jeton2=new Jeton("Jaune");
@@ -80,35 +109,8 @@ public void debuterPartie(){
                 sc.next();
             }
         }
-        
-        while (grillejeu.celluleOccupee(5,Col-1)!=false){
-            
-            test=1;
-            System.out.println("la colonne est pleine, choisissez ");
-            while (test!=0){
-                test=0;
-                try{
-                    Colo=sc.nextInt();
-                }
-                catch(Exception e){
-                    test=1;
-                    System.out.println("erreur");
-                    sc.reset();
-                    sc.next();
-                }
-            }
-            
-        }
-        System.out.println(Col);
-        
-        //if celluleOccupee()
-        Jeton Jet;
-        if (joueurCourant.Couleur=="Rouge"){
-            Jet=joueurCourant.ListeJetons[i];
-            i++;
-        }
         if (Col==1){
-            System.out.println("Entrez la colone dans laquelle vous allez jouer");
+            System.out.println("Entrez la colonne dans laquelle vous allez jouer");
             
             test=1;
             while (test!=0){
@@ -155,18 +157,22 @@ public void debuterPartie(){
                 Jet=joueurCourant.ListeJetons[j];
                 j++;
             }
-
-            grillejeu.ajouterJetonDansLaColonne(Jet, Colo);
-            
+        
+            grillejeu.ajouterJetonDansLaColonne(Jet, Colo);     
         }
-
+        for(int y=0; y<6; y++){
+            if (grillejeu.CellulesJeu[y][Colo-1].presenceTrouNoir() && grillejeu.celluleOccupee(y,Colo-1)){
+                            grillejeu.CellulesJeu[y][Colo-1].activerTrouNoir();
+            }
+        }
         if (Col==2){
             System.out.println("Entrez la colonne");
             Colo=sc.nextInt();
             System.out.println("Entrez la ligne");
             Ligne=sc.nextInt();
             
-            grillejeu.placerDesintegrateur(Colo, Ligne);
+            grillejeu.placerDesintegrateur(Ligne-1, Colo-1);
+            grillejeu.tasserGrille(Colo-1);
         }
         if (Col==3){
             System.out.println("Entrez la colonne");
@@ -174,7 +180,8 @@ public void debuterPartie(){
             System.out.println("Entrez la ligne");
             Ligne=sc.nextInt();
             
-            grillejeu.recupererJeton(Colo, Ligne);
+            grillejeu.recupererJeton(Ligne-1, Colo-1);
+            grillejeu.tasserGrille(Colo-1);
         }
         
         grillejeu.afficherGrilleSurConsole();
@@ -241,7 +248,5 @@ public void attribuerCouleursAuxJoueurs(){
         ListeJoueurs[1].Couleur="Rouge";
         ListeJoueurs[0].Couleur="Jaune";
     }
-    
-}
-
+    }
 }
