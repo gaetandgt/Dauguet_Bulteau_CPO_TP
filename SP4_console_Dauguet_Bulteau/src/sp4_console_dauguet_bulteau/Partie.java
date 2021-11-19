@@ -64,8 +64,7 @@ public void debuterPartie(){
         
         
         System.out.println("C'est au tour du joueur "+ joueurCourant.Nom);
-        System.out.println("Tapez 1 pour placer un pion, 2 pour placer un Desintegrateurs, 3 pour recuperer un jeton");
-        
+        System.out.println("Entrez la colonne dans laquelle vous désirez jouer, vous mettrez un chiffre");
         int Col=0;
         int test=1;
         while (test!=0){
@@ -79,6 +78,15 @@ public void debuterPartie(){
                 sc.reset();
                 sc.next();
             }
+        }
+        
+        System.out.println(Col);
+        
+        //if celluleOccupee()
+        Jeton Jet;
+        if (joueurCourant.Couleur=="Rouge"){
+            Jet=joueurCourant.ListeJetons[i];
+            i++;
         }
         if (Col==1){
             System.out.println("Entrez la colone dans laquelle vous allez jouer");
