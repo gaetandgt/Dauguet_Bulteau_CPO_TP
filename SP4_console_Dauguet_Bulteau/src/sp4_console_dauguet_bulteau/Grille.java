@@ -144,8 +144,15 @@ public boolean etreGagnantePourJoueur(Joueur joueur){
     
 }
 
-public void tasserGrille(int num){
-    
+public void tasserGrille(int numC){
+    for(int i=0 ; i>6 ; i++){
+        if (celluleOccupee(i ,numC)==false){
+           for(int j=0 ; j<6 ; j++){
+               CellulesJeu[j][numC].jetonCourant=CellulesJeu[j+1][numC].jetonCourant;
+           }
+           CellulesJeu[5][numC].jetonCourant=null;
+        }
+    }
 }
 
 public boolean colonneRemplie(int col){
