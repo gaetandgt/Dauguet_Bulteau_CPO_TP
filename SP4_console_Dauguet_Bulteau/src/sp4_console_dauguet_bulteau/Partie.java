@@ -54,7 +54,7 @@ Scanner sc = new Scanner(System.in) ;
 
 public void debuterPartie(){
     System.out.println("C'est l'heure du duel");
-    int Colo;
+    int Colo=12;
     int Ligne;
     
     int i=0;
@@ -63,7 +63,7 @@ public void debuterPartie(){
     while(grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])!=true && grillejeu.etreGagnantePourJoueur(ListeJoueurs[1])!=true){
         
         
-        System.out.println("C'est au tour du joueur "+ ListeJoueurs[0].Nom);
+        System.out.println("C'est au tour du joueur "+ joueurCourant.Nom);
         System.out.println("Tapez 1 pour placer un pion, 2 pour placer un Desintegrateurs, 3 pour recuperer un jeton");
         
         int Col=0;
@@ -87,7 +87,7 @@ public void debuterPartie(){
             while (test!=0){
                 test=0;
                 try{
-                    Col=sc.nextInt();
+                    Colo=sc.nextInt();
                 }
                 catch(Exception e){
                     test=1;
@@ -97,14 +97,14 @@ public void debuterPartie(){
                 }
             }
             
-            while (grillejeu.colonneRemplie(Col-1)!=false){
+            while (grillejeu.colonneRemplie(Colo-1)!=false){
             
                 test=1;
                 System.out.println("la colonne est pleine, choisissez de nouveau");
                 while (test!=0){
                     test=0;
                     try{
-                        Col=sc.nextInt();
+                        Colo=sc.nextInt();
                     }
                     catch(Exception e){
                         test=1;
@@ -115,7 +115,7 @@ public void debuterPartie(){
                 }
 
             }
-            System.out.println(Col);
+            System.out.println(Colo);
 
             //if celluleOccupee()
 
@@ -129,7 +129,7 @@ public void debuterPartie(){
                 j++;
             }
 
-            grillejeu.ajouterJetonDansLaColonne(Jet, Col);
+            grillejeu.ajouterJetonDansLaColonne(Jet, Colo);
             
         }
 
@@ -168,6 +168,36 @@ public void debuterPartie(){
             grillejeu.afficherGrilleSurConsole();
         }
         
+    }
+    System.out.println(joueurCourant);
+    System.out.println(ListeJoueurs[0]);
+    if (grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])==true ){
+        
+        if (joueurCourant!=ListeJoueurs[0]){
+            if (grillejeu.etreGagnantePourJoueur(ListeJoueurs[1])==true){
+                System.out.println("le gagnant est " + ListeJoueurs[1].Nom);
+            }
+            else{
+                System.out.println("le gagnant est " + ListeJoueurs[0].Nom);
+            }
+        }
+        else{
+            System.out.println("le gagnant est " + ListeJoueurs[0].Nom);
+        }
+    }
+    else{
+        
+        if (joueurCourant!=ListeJoueurs[1]){
+            if (grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])==true){
+                System.out.println("le gagnant est " + ListeJoueurs[0].Nom);
+            }
+            else{
+                System.out.println("le gagnant est " + ListeJoueurs[1].Nom);
+            }
+        }
+        else{
+            System.out.println("le gagnant est " + ListeJoueurs[1].Nom);
+        }
     }
 }
 
