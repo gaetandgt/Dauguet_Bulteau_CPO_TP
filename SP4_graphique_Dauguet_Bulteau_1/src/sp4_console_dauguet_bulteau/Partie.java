@@ -80,33 +80,6 @@ public void debuterPartie(){
                 sc.next();
             }
         }
-        
-        while (grillejeu.celluleOccupee(5,Col-1)!=false){
-            
-            test=1;
-            System.out.println("la colonne est pleine, choisissez ");
-            while (test!=0){
-                test=0;
-                try{
-                    Colo=sc.nextInt();
-                }
-                catch(Exception e){
-                    test=1;
-                    System.out.println("erreur");
-                    sc.reset();
-                    sc.next();
-                }
-            }
-            
-        }
-        System.out.println(Col);
-        
-        //if celluleOccupee()
-        Jeton Jet;
-        if (joueurCourant.Couleur=="Rouge"){
-            Jet=joueurCourant.ListeJetons[i];
-            i++;
-        }
         if (Col==1){
             System.out.println("Entrez la colone dans laquelle vous allez jouer");
             
