@@ -8,6 +8,7 @@ package sp4_console_dauguet_bulteau;
  *
  * @author bulte
  */
+import java.util.Random;
 public class Grille {
     Cellule [][] CellulesJeu= new Cellule[6][7];
     
