@@ -39,13 +39,16 @@ public Partie(Joueur a, Joueur b){
 
 public void initialiserPartie(){
     grillejeu= new Grille();
+    
     int compteur=0;
     while(compteur<5){
+        System.out.println("ok");
         Random Aleat=new Random();
-        int lg=Aleat.nextInt(6)-1;
-        int cln=Aleat.nextInt(7)-1;
+        int lg=Aleat.nextInt(6);
+        int cln=Aleat.nextInt(7);
         if(grillejeu.placerTrouNoir(lg, cln)==true){
-            compteur++;
+        grillejeu.placerTrouNoir(lg, cln); 
+        compteur=compteur+1;
         }
     }
     for(int i=0; i<21; i++){

@@ -58,10 +58,14 @@ public void afficherGrilleSurConsole(){
     System.out.println("affichage grille");
     for (int i=5;i>=0;i--){
         for (int j=0;j<7;j++){
+            
             if (celluleOccupee(i,j)==true){
                 
                 if (lireCouleurDuJeton(i,j)=="Rouge"){
                     System.out.print("\033[31m O  ");
+                }
+                else if(CellulesJeu[i][j].presenceTrouNoir()==true){
+                System.out.print("\033[35m O  ");
                 }
                 else{
                     System.out.print("\033[33m O  ");
@@ -70,6 +74,9 @@ public void afficherGrilleSurConsole(){
             
             else{
                 System.out.print("\033[37m O  ");
+            }
+            if(CellulesJeu[i][j].presenceTrouNoir()==true){
+                System.out.print("\033[35m O  ");
             }
             
         }
@@ -176,7 +183,7 @@ public boolean placerDesintegrateur(int lg, int cln){
 }
 
 public boolean placerTrouNoir(int lg, int cln){
-    if(CellulesJeu[lg][cln].presenceTrouNoir()){
+    if(CellulesJeu[lg][cln].presenceTrouNoir()==false){
         CellulesJeu[lg][cln].placerTrouNoir();
         return true;
     }
