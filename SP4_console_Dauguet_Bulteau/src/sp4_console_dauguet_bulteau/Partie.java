@@ -39,6 +39,15 @@ public Partie(Joueur a, Joueur b){
 
 public void initialiserPartie(){
     grillejeu= new Grille();
+    int compteur=0;
+    while(compteur<5){
+        Random Aleat=new Random();
+        int lg=Aleat.nextInt(6)-1;
+        int cln=Aleat.nextInt(7)-1;
+        if(grillejeu.placerTrouNoir(lg, cln)==true){
+            compteur++;
+        }
+    }
     for(int i=0; i<21; i++){
         Jeton Jeton1=new Jeton("Rouge");
         Jeton Jeton2=new Jeton("Jaune");
