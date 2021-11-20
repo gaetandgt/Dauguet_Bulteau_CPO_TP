@@ -4,6 +4,8 @@
  */
 package sp4_console_dauguet_bulteau;
 
+import java.util.Random;
+
 /**
  *
  * @author bulte
@@ -13,14 +15,23 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     /**
      * Creates new form FenetreDeJeu
      */
-    
-    Joueur [] ListeJoueurs= new Joueur[2];
+    Joueur[] ListeJoueurs = new Joueur[2];
     Joueur joueurCourant;
-    Grille grillejeu;
+    Grille grillejeu = new Grille();
+    
+
     public FenetreDeJeu() {
         initComponents();
+        grillejeu.afficherGrilleSurConsole();
         panneau_infos_joueur.setVisible(false);
         panneau_info_partie.setVisible(false);
+
+        for (int i = 5; i >= 0; i--) {
+            for (int j = 0; j < 7; j++) {
+                CelluleGraphique cellGraph = new CelluleGraphique(grillejeu.CellulesJeu[i][j]);
+                panneau_grille.add(cellGraph);
+            }
+        }
     }
 
     /**
@@ -199,6 +210,9 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
         panneau_infos_joueur.setVisible(true);
         panneau_info_partie.setVisible(true);
+        initialiserPartie();
+        panneau_grille.repaint();
+        btn_start.setEnabled(false);
     }//GEN-LAST:event_btn_startActionPerformed
 
     /**
@@ -235,7 +249,65 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             }
         });
     }
+    public void initialiserPartie(){
+        String nomJoueur1 = nom_joueur1.getText();// permet de récupérer le nom tapé dans la cellule
+        Joueur J1 = new Joueur(nomJoueur1);
+        String nomJoueur2 = nom_joueur2.getText();
+        Joueur J2 = new Joueur(nomJoueur2);
+        
+        Random sort = new Random();
+        int Joue;
+        Joue = sort.nextInt(2);
+        if (Joue==1){
+            ListeJoueurs[0]=J1;
+            ListeJoueurs[1]=J2;
+        }
+        else{
+            ListeJoueurs[0]=J2;
+            ListeJoueurs[1]=J1;
+        }
+        joueurCourant=ListeJoueurs[0];
+        attribuerCouleursAuxJoueurs();
+        lbl_J1_nom.setText(nomJoueur1);
+        lbl_J2_nom.setText(nomJoueur2);
+        lbl_J1_couleur.setText(J1.Couleur);
+        lbl_J2_couleur.setText(J2.Couleur);
+        lbl_J1_desint.setText(J1.nombreDesintegrateurs+"");
+        lbl_J2_desint.setText(J2.nombreDesintegrateurs+"");//les guillemets sont là pour donner un string
+        lbl_jcourant.setText(joueurCourant.Nom);
+        //ici on affiche les différentes informations sur les joueurs dans les cases correspondant au label appelé ex: lbl_J1_desint
+        for(int i=0; i<21; i++){
+            Jeton Jeton1=new Jeton("Rouge");
+            Jeton Jeton2=new Jeton("Jaune");
 
+             if (ListeJoueurs[0].Couleur=="Rouge"){
+                 ListeJoueurs[0].ListeJetons[i]=Jeton1;
+                 ListeJoueurs[1].ListeJetons[i]=Jeton2;
+             }
+             else{
+                 ListeJoueurs[1].ListeJetons[i]=Jeton1;
+                 ListeJoueurs[0].ListeJetons[i]=Jeton2;
+             }
+        }
+        
+    }
+
+    public void attribuerCouleursAuxJoueurs(){
+    int var;
+    Random Aleat = new Random();
+    var = Aleat.nextInt(2);
+    
+    if (var==1){
+        ListeJoueurs[0].Couleur="Rouge";
+        ListeJoueurs[1].Couleur="Jaune";
+    }
+    else{
+        ListeJoueurs[1].Couleur="Rouge";
+        ListeJoueurs[0].Couleur="Jaune";
+    }
+    
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_col_0;
     private javax.swing.JButton btn_col_1;
