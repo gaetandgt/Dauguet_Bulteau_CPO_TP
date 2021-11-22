@@ -28,12 +28,12 @@ public Partie(Joueur a, Joueur b){
         ListeJoueurs[0]=b;
         ListeJoueurs[1]=a;
     }
-    joueurCourant=a;
+    joueurCourant=ListeJoueurs[0];
     
 }
 
 public void initialiserPartie(){
-    grillejeu= new Grille();
+    
     for(int i=0; i<21; i++){
         Jeton Jeton1=new Jeton("Rouge");
         Jeton Jeton2=new Jeton("Jaune");
@@ -47,7 +47,8 @@ public void initialiserPartie(){
              ListeJoueurs[0].ListeJetons[i]=Jeton2;
          }
     }
-   
+    
+    grillejeu.afficherGrilleSurConsole();
 }
 
 Scanner sc = new Scanner(System.in) ;
