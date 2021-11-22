@@ -33,7 +33,7 @@ public Partie(Joueur a, Joueur b){
         ListeJoueurs[0]=b;
         ListeJoueurs[1]=a;
     }
-    joueurCourant=a;
+    joueurCourant=ListeJoueurs[0];
     
 }
 
