@@ -118,7 +118,71 @@ public void debuterPartie(){
                 sc.reset();
                 sc.next();
             }
-        }       
+        }
+        if (Col==2){
+            if(joueurCourant.nombreDesintegrateurs>0){
+                int verif=0;
+                while(verif==0){
+                    System.out.println("Entrez la colonne");
+                    Colo=sc.nextInt();
+                    System.out.println("Entrez la ligne");
+                    Ligne=sc.nextInt();
+                
+                    if(joueurCourant.Couleur!=grillejeu.lireCouleurDuJeton(Ligne-1,Colo-1)){
+                        grillejeu.supprimerJeton(Ligne-1, Colo-1);
+                        joueurCourant.nombreDesintegrateurs--;
+                        grillejeu.tasserGrille(Colo-1);
+                        verif=1;
+                }
+                
+            
+                    else{
+                        System.out.println("Vous ne pouvez pas désintégrer un de vos jetons, veuillez rentrer les coordonnées d'un jeton adverse");
+                    }
+                }
+            }
+            else{
+                Col=1;
+                System.out.println("Vous n'avez pas de désintegrateurs, veuillez placer un jeton");
+            }
+            
+        }
+        int verif3=0;
+        if (Col==3){
+            int verif2=0;
+                for (int k=0;k<6;k++){
+                    for (int g=0;g<7;g++){
+                        if (grillejeu.celluleOccupee(k, g)){
+                            if (grillejeu.lireCouleurDuJeton(k, g)==joueurCourant.Couleur){
+                                verif3=1;
+                            }
+                        }
+                    }
+                }
+                if(verif3==1){
+                    while(verif2==0){
+                        System.out.println("Entrez la colonne");
+                        Colo=sc.nextInt();
+                        System.out.println("Entrez la ligne");
+                        Ligne=sc.nextInt();
+                
+                    if(joueurCourant.Couleur==grillejeu.lireCouleurDuJeton(Ligne-1,Colo-1)){
+                        grillejeu.recupererJeton(Ligne-1, Colo-1);
+                        grillejeu.tasserGrille(Colo-1);
+                        verif2=1;
+                    }
+                    else{
+                        System.out.println("Veuillez sélectionner un de vos jetons");
+                    }
+                    }
+                }
+                else{
+                    System.out.println("Vous n'avez pas de jeton positionné sur la grille, veuillez jouer un jeton");
+                    Col=1;
+                }
+            }
+        
+        
         if (Col==1){
             System.out.println("Entrez la colonne dans laquelle vous allez jouer");
             
@@ -174,30 +238,16 @@ public void debuterPartie(){
             if (grillejeu.CellulesJeu[y][Colo-1].presenceDesintegrateur() && grillejeu.celluleOccupee(y,Colo-1)){
                 grillejeu.CellulesJeu[y][Colo-1].recupererDesintegrateur();
                 joueurCourant.nombreDesintegrateurs++;
+                System.out.println(ListeJoueurs[0].Nom);
+                System.out.println(ListeJoueurs[1].Nom);
+                System.out.println(ListeJoueurs[0].nombreDesintegrateurs);
+                System.out.println(ListeJoueurs[1].nombreDesintegrateurs);
             }
         }
         for(int x=0; x<6; x++){
             if (grillejeu.CellulesJeu[x][Colo-1].presenceTrouNoir() && grillejeu.celluleOccupee(x,Colo-1)){
                             grillejeu.CellulesJeu[x][Colo-1].activerTrouNoir();
             }
-        }
-        if (Col==2){
-                System.out.println("Entrez la colonne");
-                Colo=sc.nextInt();
-                System.out.println("Entrez la ligne");
-                Ligne=sc.nextInt();
-                grillejeu.supprimerJeton(Ligne-1, Colo-1);
-                joueurCourant.nombreDesintegrateurs--;
-                grillejeu.tasserGrille(Colo-1);
-        }
-        if (Col==3){
-            System.out.println("Entrez la colonne");
-            Colo=sc.nextInt();
-            System.out.println("Entrez la ligne");
-            Ligne=sc.nextInt();
-            
-            grillejeu.recupererJeton(Ligne-1, Colo-1);
-            grillejeu.tasserGrille(Colo-1);
         }
         
         grillejeu.afficherGrilleSurConsole();
