@@ -45,21 +45,31 @@ public void initialiserPartie(){
         Random Aleat=new Random();
         int lg=Aleat.nextInt(6);
         int cln=Aleat.nextInt(7);
-        if(grillejeu.placerTrouNoir(lg, cln)==true){
+        if(grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==false){
         grillejeu.placerTrouNoir(lg, cln); 
         compteur=compteur+1;
         }
     }
     
     int compteur2=0;
-    while(compteur2<5){
-        System.out.println("ok");
+    while(compteur2<2){
         Random Aleat=new Random();
         int lg=Aleat.nextInt(6);
         int cln=Aleat.nextInt(7);
-        if(grillejeu.placerDesintegrateur(lg, cln)==true){
+        if(grillejeu.CellulesJeu[lg][cln].presenceDesintegrateur()==false && grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==true){
         grillejeu.placerDesintegrateur(lg, cln); 
         compteur2=compteur2+1;
+        }
+    }
+    
+    int compteur3=0;
+    while(compteur3<3){
+        Random Aleat=new Random();
+        int lg=Aleat.nextInt(6);
+        int cln=Aleat.nextInt(7);
+        if(grillejeu.CellulesJeu[lg][cln].presenceDesintegrateur()==false && grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==false){
+        grillejeu.placerDesintegrateur(lg, cln); 
+        compteur3=compteur3+1;
         }
     }
     
@@ -108,7 +118,7 @@ public void debuterPartie(){
                 sc.reset();
                 sc.next();
             }
-        }
+        }       
         if (Col==1){
             System.out.println("Entrez la colonne dans laquelle vous allez jouer");
             
@@ -161,18 +171,24 @@ public void debuterPartie(){
             grillejeu.ajouterJetonDansLaColonne(Jet, Colo);     
         }
         for(int y=0; y<6; y++){
-            if (grillejeu.CellulesJeu[y][Colo-1].presenceTrouNoir() && grillejeu.celluleOccupee(y,Colo-1)){
-                            grillejeu.CellulesJeu[y][Colo-1].activerTrouNoir();
+            if (grillejeu.CellulesJeu[y][Colo-1].presenceDesintegrateur() && grillejeu.celluleOccupee(y,Colo-1)){
+                grillejeu.CellulesJeu[y][Colo-1].recupererDesintegrateur();
+                joueurCourant.nombreDesintegrateurs++;
+            }
+        }
+        for(int x=0; x<6; x++){
+            if (grillejeu.CellulesJeu[x][Colo-1].presenceTrouNoir() && grillejeu.celluleOccupee(x,Colo-1)){
+                            grillejeu.CellulesJeu[x][Colo-1].activerTrouNoir();
             }
         }
         if (Col==2){
-            System.out.println("Entrez la colonne");
-            Colo=sc.nextInt();
-            System.out.println("Entrez la ligne");
-            Ligne=sc.nextInt();
-            
-            grillejeu.placerDesintegrateur(Ligne-1, Colo-1);
-            grillejeu.tasserGrille(Colo-1);
+                System.out.println("Entrez la colonne");
+                Colo=sc.nextInt();
+                System.out.println("Entrez la ligne");
+                Ligne=sc.nextInt();
+                grillejeu.supprimerJeton(Ligne-1, Colo-1);
+                joueurCourant.nombreDesintegrateurs--;
+                grillejeu.tasserGrille(Colo-1);
         }
         if (Col==3){
             System.out.println("Entrez la colonne");

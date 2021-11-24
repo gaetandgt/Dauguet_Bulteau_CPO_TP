@@ -72,7 +72,7 @@ public boolean presenceTrouNoir(){
     return false;
 }
 
-public boolean presenceDesintegrateurs(){
+public boolean presenceDesintegrateur(){
     if (desintegrateur==true){
         return true;
     }

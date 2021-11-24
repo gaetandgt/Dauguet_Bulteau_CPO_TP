@@ -67,9 +67,13 @@ public void afficherGrilleSurConsole(){
                 else{
                     System.out.print("\033[33m O  ");
                 }
-            }else if(CellulesJeu[i][j].presenceTrouNoir()==true){
+            }
+            else if(CellulesJeu[i][j].presenceTrouNoir()==true){
                 System.out.print("\033[35m O  ");
-            }   
+            } 
+            else if(CellulesJeu[i][j].presenceDesintegrateur()==true){
+                System.out.print("\033[32m O  ");
+            }
             else{
                 System.out.print("\033[37m O  ");
                 }
@@ -167,7 +171,7 @@ public boolean colonneRemplie(int col){
 }
 
 public boolean placerDesintegrateur(int lg, int cln){
-    if(CellulesJeu[lg][cln].presenceDesintegrateurs()==false){
+    if(CellulesJeu[lg][cln].presenceDesintegrateur()==false){
         CellulesJeu[lg][cln].placerDesintegrateur();
         return true;
     }
