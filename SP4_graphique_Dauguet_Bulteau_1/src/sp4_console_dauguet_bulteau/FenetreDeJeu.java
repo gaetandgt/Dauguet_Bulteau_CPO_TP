@@ -137,21 +137,51 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         getContentPane().add(btn_col_0, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 25, -1, -1));
 
         btn_col_1.setText("2");
+        btn_col_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_col_1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_col_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 25, -1, -1));
 
         btn_col_2.setText("3");
+        btn_col_2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_col_2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_col_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(252, 25, -1, -1));
 
         btn_col_3.setText("4");
+        btn_col_3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_col_3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_col_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(348, 25, -1, -1));
 
         btn_col_4.setText("5");
+        btn_col_4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_col_4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_col_4, new org.netbeans.lib.awtextra.AbsoluteConstraints(444, 25, -1, -1));
 
         btn_col_5.setText("6");
+        btn_col_5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_col_5ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_col_5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 25, -1, -1));
 
         btn_col_6.setText("7");
+        btn_col_6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_col_6ActionPerformed(evt);
+            }
+        });
         getContentPane().add(btn_col_6, new org.netbeans.lib.awtextra.AbsoluteConstraints(636, 25, -1, -1));
 
         panneau_infos_joueur.setBackground(new java.awt.Color(204, 255, 204));
@@ -202,9 +232,12 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         setBounds(0, 0, 1018, 681);
     }// </editor-fold>//GEN-END:initComponents
-
+     
     private void btn_col_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_0ActionPerformed
-        // TODO add your handling code here:
+        jouerDansColonne(0);
+        if (grillejeu.colonneRemplie(0)==true) btn_col_0.setEnabled(false);
+        joueursuivant();
+        
     }//GEN-LAST:event_btn_col_0ActionPerformed
 
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
@@ -215,6 +248,75 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         btn_start.setEnabled(false);
     }//GEN-LAST:event_btn_startActionPerformed
 
+    private void btn_col_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_1ActionPerformed
+        jouerDansColonne(1);
+        if (grillejeu.colonneRemplie(1)==true) btn_col_1.setEnabled(false);
+        joueursuivant();
+    }//GEN-LAST:event_btn_col_1ActionPerformed
+
+    private void btn_col_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_2ActionPerformed
+        jouerDansColonne(2);
+        if (grillejeu.colonneRemplie(2)==true) btn_col_2.setEnabled(false);
+        joueursuivant();
+    }//GEN-LAST:event_btn_col_2ActionPerformed
+
+    private void btn_col_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_3ActionPerformed
+        jouerDansColonne(3);
+        if (grillejeu.colonneRemplie(3)==true) btn_col_3.setEnabled(false);
+        joueursuivant();
+    }//GEN-LAST:event_btn_col_3ActionPerformed
+
+    private void btn_col_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_4ActionPerformed
+        jouerDansColonne(4);
+        if (grillejeu.colonneRemplie(4)==true) btn_col_4.setEnabled(false);
+        joueursuivant();
+    }//GEN-LAST:event_btn_col_4ActionPerformed
+
+    private void btn_col_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_5ActionPerformed
+        jouerDansColonne(5);
+        if (grillejeu.colonneRemplie(5)==true) btn_col_5.setEnabled(false);
+        joueursuivant();
+    }//GEN-LAST:event_btn_col_5ActionPerformed
+
+    private void btn_col_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_6ActionPerformed
+        jouerDansColonne(6);
+        if (grillejeu.colonneRemplie(6)==true) btn_col_6.setEnabled(false);
+        joueursuivant();
+    }//GEN-LAST:event_btn_col_6ActionPerformed
+    
+    int i=0;
+    int j=0;
+    public boolean jouerDansColonne(int indice_colonne){
+        Jeton Jet;
+        
+        if (joueurCourant.Couleur=="Rouge"){
+            Jet=joueurCourant.ListeJetons[i];
+            i++;
+        }
+        else{
+            Jet=joueurCourant.ListeJetons[j];
+            j++;
+        }
+        
+        if (grillejeu.colonneRemplie(indice_colonne)!=false){
+            System.out.println(indice_colonne);
+            return false;
+            
+        }
+        grillejeu.ajouterJetonDansLaColonne(Jet, indice_colonne+1);
+        panneau_grille.repaint();
+        return true;
+    }
+    public void joueursuivant(){
+        if (joueurCourant==ListeJoueurs[0]){
+            joueurCourant=ListeJoueurs[1];
+        }
+        else{
+            joueurCourant=ListeJoueurs[0];
+        }
+        lbl_jcourant.setText(joueurCourant.Nom);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -275,6 +377,28 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         lbl_J1_desint.setText(J1.nombreDesintegrateurs+"");
         lbl_J2_desint.setText(J2.nombreDesintegrateurs+"");//les guillemets sont là pour donner un string
         lbl_jcourant.setText(joueurCourant.Nom);
+        int compteur=0;
+        while(compteur<5){
+            Random Aleat=new Random();
+            int lg=Aleat.nextInt(6);
+            int cln=Aleat.nextInt(7);
+            if(grillejeu.placerTrouNoir(lg, cln)==true){
+            grillejeu.placerTrouNoir(lg, cln); 
+            compteur=compteur+1;
+            }
+        }
+
+        int compteur2=0;
+        while(compteur2<5){
+            System.out.println("ok");
+            Random Aleat=new Random();
+            int lg=Aleat.nextInt(6);
+            int cln=Aleat.nextInt(7);
+            if(grillejeu.placerDesintegrateur(lg, cln)==true){
+            grillejeu.placerDesintegrateur(lg, cln); 
+            compteur2=compteur2+1;
+            }
+        }
         //ici on affiche les différentes informations sur les joueurs dans les cases correspondant au label appelé ex: lbl_J1_desint
         for(int i=0; i<21; i++){
             Jeton Jeton1=new Jeton("Rouge");

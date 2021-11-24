@@ -57,24 +57,24 @@ public void afficherGrilleSurConsole(){
     System.out.println("affichage grille");
     for (int i=5;i>=0;i--){
         for (int j=0;j<7;j++){
+
             if (celluleOccupee(i,j)==true){
-                
+
                 if (lireCouleurDuJeton(i,j)=="Rouge"){
                     System.out.print("\033[31m O  ");
                 }
                 else{
                     System.out.print("\033[33m O  ");
                 }
+            }else if(CellulesJeu[i][j].presenceTrouNoir()==true){
+                System.out.print("\033[35m O  ");
             }
-            
             else{
                 System.out.print("\033[37m O  ");
+                }
             }
-            
-        }
         System.out.println("");
     }
-
 }
 
 public boolean celluleOccupee(int nb1, int nb2){
@@ -144,8 +144,15 @@ public boolean etreGagnantePourJoueur(Joueur joueur){
     
 }
 
-public void tasserGrille(int num){
-    
+public void tasserGrille(int numC){
+    for(int i=0 ; i<6 ; i++){
+        if (celluleOccupee(i ,numC)==false){
+           for(int j=i ; j<5 ; j++){
+               CellulesJeu[j][numC].jetonCourant=CellulesJeu[j+1][numC].jetonCourant;
+           }
+           CellulesJeu[5][numC].jetonCourant=null;
+        }
+    }
 }
 
 public boolean colonneRemplie(int col){
@@ -158,7 +165,7 @@ public boolean colonneRemplie(int col){
 }
 
 public boolean placerDesintegrateur(int lg, int cln){
-    if(CellulesJeu[lg][cln].presenceDesintegrateurs()){
+    if(CellulesJeu[lg][cln].presenceDesintegrateurs()==false){
         CellulesJeu[lg][cln].placerDesintegrateur();
         return true;
     }
@@ -168,7 +175,7 @@ public boolean placerDesintegrateur(int lg, int cln){
 }
 
 public boolean placerTrouNoir(int lg, int cln){
-    if(CellulesJeu[lg][cln].presenceTrouNoir()){
+    if(CellulesJeu[lg][cln].presenceTrouNoir()==false){
         CellulesJeu[lg][cln].placerTrouNoir();
         return true;
     }

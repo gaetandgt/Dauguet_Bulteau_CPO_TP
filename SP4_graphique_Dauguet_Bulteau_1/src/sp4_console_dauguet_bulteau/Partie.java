@@ -33,6 +33,28 @@ public Partie(Joueur a, Joueur b){
 }
 
 public void initialiserPartie(){
+    int compteur=0;
+    while(compteur<5){
+        Random Aleat=new Random();
+        int lg=Aleat.nextInt(6);
+        int cln=Aleat.nextInt(7);
+        if(grillejeu.placerTrouNoir(lg, cln)==true){
+        grillejeu.placerTrouNoir(lg, cln); 
+        compteur=compteur+1;
+        }
+    }
+
+    int compteur2=0;
+    while(compteur2<5){
+        System.out.println("ok");
+        Random Aleat=new Random();
+        int lg=Aleat.nextInt(6);
+        int cln=Aleat.nextInt(7);
+        if(grillejeu.placerDesintegrateur(lg, cln)==true){
+        grillejeu.placerDesintegrateur(lg, cln); 
+        compteur2=compteur2+1;
+        }
+    }
     
     for(int i=0; i<21; i++){
         Jeton Jeton1=new Jeton("Rouge");
@@ -131,7 +153,10 @@ public void debuterPartie(){
             }
 
             grillejeu.ajouterJetonDansLaColonne(Jet, Colo);
-            
+            for(int y=0; y<6; y++){
+            if (grillejeu.CellulesJeu[y][Colo-1].presenceTrouNoir() && grillejeu.celluleOccupee(y,Colo-1)){
+                            grillejeu.CellulesJeu[y][Colo-1].activerTrouNoir();
+            }
         }
 
         if (Col==2){
@@ -140,7 +165,8 @@ public void debuterPartie(){
             System.out.println("Entrez la ligne");
             Ligne=sc.nextInt();
             
-            grillejeu.placerDesintegrateur(Colo, Ligne);
+            grillejeu.placerDesintegrateur(Ligne-1, Colo-1);
+            grillejeu.tasserGrille(Colo-1);
         }
         if (Col==3){
             System.out.println("Entrez la colonne");
@@ -148,7 +174,8 @@ public void debuterPartie(){
             System.out.println("Entrez la ligne");
             Ligne=sc.nextInt();
             
-            grillejeu.recupererJeton(Colo, Ligne);
+            grillejeu.recupererJeton(Ligne-1, Colo-1);
+            grillejeu.tasserGrille(Colo-1);
         }
         
         grillejeu.afficherGrilleSurConsole();
@@ -199,6 +226,7 @@ public void debuterPartie(){
         else{
             System.out.println("le gagnant est " + ListeJoueurs[1].Nom);
         }
+    }
     }
 }
 
