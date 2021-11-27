@@ -31,17 +31,81 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 cellGraph.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         Cellule c = cellGraph.celluleAssociee;
-                        if (c.jetonCourant==null) return ;
-                        
-                        if (c.jetonCourant.Couleur.equals(joueurCourant.Couleur)){
-                            message.setText("le joueur " + joueurCourant.Nom+ " récupère un de ses jetons");
+                        if (c.jetonCourant == null) {
+                            return;
                         }
-                        else{
-                            message.setText("le joueur " + joueurCourant.Nom+ " veut désintégrer jetons");
+
+                        if (c.jetonCourant.Couleur.equals(joueurCourant.Couleur)) {
+                            
+                            message.setText("le joueur " + joueurCourant.Nom + " récupère un de ses jetons");
+                            Jeton jrecup = c.recupererJeton();
+                            joueurCourant.ajouterJeton(jrecup);
+                            c.supprimerJeton();
+                            joueursuivant();
+                        } else {
+                            if (joueurCourant.nombreDesintegrateurs > 0) {
+                                message.setText("le joueur " + joueurCourant.Nom + " désintégre un jeton");
+                                c.supprimerJeton();
+                                joueurCourant.nombreDesintegrateurs--;
+                                joueursuivant();
+                            } else {
+                                return;
+                            }
+
+                        }
+                        for (int tasse = 0; tasse < 7; tasse++) {
+                            grillejeu.tasserGrille(tasse);
+                            
+
+                        }
+                        if (grillejeu.colonneRemplie(0) != true) {
+                            btn_col_0.setEnabled(true);
+                        }
+                        if (grillejeu.colonneRemplie(1) != true) {
+                            btn_col_1.setEnabled(true);
+                        }
+                        if (grillejeu.colonneRemplie(2) != true) {
+                            btn_col_2.setEnabled(true);
+                        }
+                        if (grillejeu.colonneRemplie(3) != true) {
+                            btn_col_3.setEnabled(true);
+                        }
+                        if (grillejeu.colonneRemplie(4) != true) {
+                            btn_col_4.setEnabled(true);
+                        }
+                        if (grillejeu.colonneRemplie(5) != true) {
+                            btn_col_5.setEnabled(true);
+                        }
+                        if (grillejeu.colonneRemplie(6) != true) {
+                            btn_col_6.setEnabled(true);
                         }
                         
+                        
+                        
+                        panneau_grille.repaint();
+                        lbl_J1_desint.setText(ListeJoueurs[0].nombreDesintegrateurs + "");
+                        lbl_J2_desint.setText(ListeJoueurs[1].nombreDesintegrateurs + "");
+
+                        panneau_grille.repaint();
+                        boolean vict_j1 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[0]);
+                        boolean vict_j2 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[1]);
+                        if (vict_j1 && !vict_j2) {
+                            message.setText("Victoire de " + ListeJoueurs[0].Nom);
+                        }
+                        if (vict_j2 && !vict_j1) {
+                            message.setText("Victoire de " + ListeJoueurs[1].Nom);
+                        }
+                        if (vict_j1 && vict_j2) {
+                            if (joueurCourant == ListeJoueurs[0]) {
+                                message.setText("Victoire de " + ListeJoueurs[1].Nom);
+                            } else {
+                                message.setText("Victoire de " + ListeJoueurs[0].Nom);
+                            }
+                        }
+
                     }
                 });
+
                 panneau_grille.add(cellGraph);
             }
         }
@@ -300,6 +364,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         if (grillejeu.colonneRemplie(5) == true) {
             btn_col_5.setEnabled(false);
         }
+        
         joueursuivant();
     }//GEN-LAST:event_btn_col_5ActionPerformed
 
@@ -340,11 +405,17 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         grillejeu.ajouterJetonDansLaColonne(Jet, indice_colonne + 1);
 
         for (int x = 0; x < 6; x++) {
+            if (grillejeu.CellulesJeu[x][indice_colonne].presenceDesintegrateurs() && grillejeu.celluleOccupee(x, indice_colonne)) {
+                grillejeu.CellulesJeu[x][indice_colonne].recupererDesintegrateur();
+                joueurCourant.nombreDesintegrateurs++;
+                System.out.println(joueurCourant.Nom);
+                System.out.println(joueurCourant.nombreDesintegrateurs);
+            }
             if (grillejeu.CellulesJeu[x][indice_colonne].presenceTrouNoir() && grillejeu.celluleOccupee(x, indice_colonne)) {
                 grillejeu.CellulesJeu[x][indice_colonne].activerTrouNoir();
 
             }
-
+            
         }
         for (int y = 0; y < 6; y++) {
             if (grillejeu.CellulesJeu[y][indice_colonne].presenceDesintegrateurs() && grillejeu.celluleOccupee(y, indice_colonne)) {
