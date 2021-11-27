@@ -19,7 +19,7 @@ public Joueur (String unNom){
   Nom=unNom ;
 }
 
-public void affecterColeur(String uneCouleur){
+public void affecterCouleur(String uneCouleur){
     Couleur=uneCouleur;
 }
    
