@@ -15,13 +15,13 @@ package sp4_console_dauguet_bulteau;
 
 import java.util.Random;
 import java.util.Scanner;
-public class Partie {
+public class Partie { // on définit la classe partie et ses différents attributs
     Joueur [] ListeJoueurs= new Joueur[2];
     int [] tabEntiers = new int[100];
     Joueur joueurCourant;
     Grille grillejeu;
     
-public Partie(Joueur a, Joueur b){
+public Partie(Joueur a, Joueur b){ // on crée une nouvelle partie avec un joueur a et un joueur b, on attribue un ordre de jeu
     Random sort = new Random();
     int Joue;
     Joue = sort.nextInt(2);
@@ -40,44 +40,44 @@ public Partie(Joueur a, Joueur b){
 public void initialiserPartie(){
     grillejeu= new Grille();
     
-    int compteur=0;
-    while(compteur<5){
+    int compteur=0; // on place les 5 trous noirs en vérifiant bien de ne pas en placer 2 sur la même case
+    while(compteur<5){ // ce while nous permet d'effectuer la boucle tant qu'il n'y a pas 5 trous noirs sur la grille
         Random Aleat=new Random();
-        int lg=Aleat.nextInt(6);
+        int lg=Aleat.nextInt(6); // on tire au hasard les coordonnees sur lesquelles on va placer le trou noir
         int cln=Aleat.nextInt(7);
-        if(grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==false){
+        if(grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==false){ // on fait appel à presenceTrouNoir() pour vérifier la présence ou non de trou noir dans la cellule à laquelle on souhaite en ajouter un
         grillejeu.placerTrouNoir(lg, cln); 
-        compteur=compteur+1;
+        compteur=compteur+1; // on incremente le compteur lorsqu'un trou noir a bien été placé
         }
     }
     
-    int compteur2=0;
-    while(compteur2<2){
+    int compteur2=0; // on place 2 désintegrateurs sur des cases ou sont deja placés des trous noirs. Les desintegrateurs sont alors cachés derriere les trous noirs
+    while(compteur2<2){ // ce while nous permet d'effectuer la boucle tant qu'il n'y a pas 2 desintegrateurs cachés sur la grille
         Random Aleat=new Random();
-        int lg=Aleat.nextInt(6);
+        int lg=Aleat.nextInt(6);// on tire au hasard les coordonnes sur lesquelles on va placer le desintegrateur
         int cln=Aleat.nextInt(7);
-        if(grillejeu.CellulesJeu[lg][cln].presenceDesintegrateur()==false && grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==true){
+        if(grillejeu.CellulesJeu[lg][cln].presenceDesintegrateur()==false && grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==true){ // on verifie qu'il n'y ait pas deja de desintegrateur et qu'il y ait bien un trou noit
         grillejeu.placerDesintegrateur(lg, cln); 
-        compteur2=compteur2+1;
+        compteur2=compteur2+1; // on incremente le compteur lorsque le desintegrateur caché a bien été placé
         }
     }
     
-    int compteur3=0;
-    while(compteur3<3){
+    int compteur3=0; // on place désormais 3 desintegrateurs sur des cases sans trous noirs.
+    while(compteur3<3){ // ce while nous permet d'effectuer la boucle tant qu'il n'y a pas 3 desintegrateurs placés sur des cases libres 
         Random Aleat=new Random();
-        int lg=Aleat.nextInt(6);
+        int lg=Aleat.nextInt(6); // on tire au hasard les coordonnees sur lesquelles on va placer le desintegrateur
         int cln=Aleat.nextInt(7);
-        if(grillejeu.CellulesJeu[lg][cln].presenceDesintegrateur()==false && grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==false){
+        if(grillejeu.CellulesJeu[lg][cln].presenceDesintegrateur()==false && grillejeu.CellulesJeu[lg][cln].presenceTrouNoir()==false){ // on verifie que la cellule tirée aléatoirement ne contient aucun trou noir ou desintegrateur
         grillejeu.placerDesintegrateur(lg, cln); 
-        compteur3=compteur3+1;
+        compteur3=compteur3+1; // on incrémente le compteur lorsque le desintegrateur visible a bien été placé
         }
     }
     
-    for(int i=0; i<21; i++){
-        Jeton Jeton1=new Jeton("Rouge");
+    for(int i=0; i<21; i++){ // on crée les listes de jetons avec les 21 jetons de chaque couleur pour chaque joueur
+        Jeton Jeton1=new Jeton("Rouge"); // on définit les nouveaux jetons et leur couleur
         Jeton Jeton2=new Jeton("Jaune");
         
-         if (ListeJoueurs[0].Couleur=="Rouge"){
+         if (ListeJoueurs[0].Couleur=="Rouge"){ // on teste si le jeton est rouge pour savoir dans quel ordre on les répartit
              ListeJoueurs[0].ListeJetons[i]=Jeton1;
              ListeJoueurs[1].ListeJetons[i]=Jeton2;
          }
@@ -91,9 +91,9 @@ public void initialiserPartie(){
 
 Scanner sc = new Scanner(System.in) ;
 
-public void debuterPartie(){
-    System.out.println("C'est l'heure du duel");
-    int Colo=12;
+public void debuterPartie(){ // c'est la plus grande partie de notre code, celle qui nous permet de jouer la partie
+    System.out.println("C'est l'heure du duel"); // petit message pour commencer la partie
+    int Colo=12; // on déclare les variables Colo et Ligne
     int Ligne;
     
     int i=0;
@@ -102,17 +102,17 @@ public void debuterPartie(){
     while(grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])!=true && grillejeu.etreGagnantePourJoueur(ListeJoueurs[1])!=true){
         
         
-        System.out.println("C'est au tour du joueur "+ joueurCourant.Nom);
-        System.out.println("Tapez 1 pour placer un pion, 2 pour placer un Desintegrateurs, 3 pour recuperer un jeton");
+        System.out.println("C'est au tour du joueur "+ joueurCourant.Nom); // on affiche une phrase pour indiquer le nom du joueur qui doit jouer
+        System.out.println("Tapez 1 pour placer un pion, 2 pour placer un Desintegrateurs, 3 pour recuperer un jeton"); // on affiche les différentes possibilités que peut choisir le joueur pour son tour de jeu 
         
-        int Col=0;
+        int Col=0; // on pose le choix du joueur à 0 avant qu'il n'ait choisi
         int test=1;
-        while (test!=0){
+        while (test!=0){ // tant que le joueur n'a pas rentré une donnée compatible on indique une erreur
             test=0;
             try{
                 Col=sc.nextInt();
             }
-            catch(Exception e){
+            catch(Exception e){ // on vérifie que le joueur entre bien une donnée compatible avec ce qu'il doit rentrer pour pouvoir jouer
                 test=1;
                 System.out.println("erreur");
                 sc.reset();
