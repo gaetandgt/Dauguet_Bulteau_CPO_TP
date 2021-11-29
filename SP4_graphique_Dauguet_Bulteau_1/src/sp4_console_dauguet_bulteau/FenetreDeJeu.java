@@ -24,7 +24,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         grillejeu.afficherGrilleSurConsole();
         panneau_infos_joueur.setVisible(false);
         panneau_info_partie.setVisible(false);
-
+        // cela permet de cacher les différents panneaux avant que la partie ne démarre
         for (int i = 5; i >= 0; i--) {
             for (int j = 0; j < 7; j++) {
                 CelluleGraphique cellGraph = new CelluleGraphique(grillejeu.CellulesJeu[i][j]);
@@ -36,7 +36,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                         }
 
                         if (c.jetonCourant.Couleur.equals(joueurCourant.Couleur)) {
-                            
+                            // On vérifie si le pion sur lequel appartient au joueur courant
                             message.setText("le joueur " + joueurCourant.Nom + " récupère un de ses jetons");
                             Jeton jrecup = c.recupererJeton();
                             joueurCourant.ajouterJeton(jrecup);
@@ -80,27 +80,29 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                             btn_col_6.setEnabled(true);
                         }
                         
+                        // ces lignes permettent de réactiver les boutons en haut des colonnes dans le cas ou la colonne n'est plus rempli
                         
-                        
-                        panneau_grille.repaint();
+                        panneau_grille.repaint();// cette ligne réactualise la grille
                         lbl_J1_desint.setText(ListeJoueurs[0].nombreDesintegrateurs + "");
                         lbl_J2_desint.setText(ListeJoueurs[1].nombreDesintegrateurs + "");
-
+                        
                         panneau_grille.repaint();
                         boolean vict_j1 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[0]);
                         boolean vict_j2 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[1]);
                         if (vict_j1 && !vict_j2) {
                             message.setText("Victoire de " + ListeJoueurs[0].Nom);
+                            // On affiche dans la console message le nom du joueur qui a gagné
                         }
                         if (vict_j2 && !vict_j1) {
                             message.setText("Victoire de " + ListeJoueurs[1].Nom);
                         }
                         if (vict_j1 && vict_j2) {
                             if (joueurCourant == ListeJoueurs[0]) {
-                                message.setText("Victoire de " + ListeJoueurs[1].Nom);
-                            } else {
                                 message.setText("Victoire de " + ListeJoueurs[0].Nom);
+                            } else {
+                                message.setText("Victoire de " + ListeJoueurs[1].Nom);
                             }
+                            //ici on vérifie que le joueur courant n'a pas gaggné en même temps que 
                         }
 
                     }
@@ -441,7 +443,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             message.setText("Victoire de " + ListeJoueurs[1].Nom);
         }
         if (vict_j1 && vict_j2) {
-            if (joueurCourant == ListeJoueurs[0]) {
+            if (joueurCourant == ListeJoueurs[1]) {
                 message.setText("Victoire de " + ListeJoueurs[1].Nom);
             } else {
                 message.setText("Victoire de " + ListeJoueurs[0].Nom);
