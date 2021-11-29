@@ -8,7 +8,7 @@ package sp4_console_dauguet_bulteau;
  *
  * @author bulte
  */
-public class Jeton {
+public class Jeton { // on définit la classe jeton et son seul attribut qui est sa couleur 
     String Couleur;
     public Jeton(String unecouleur){
         Couleur=unecouleur;

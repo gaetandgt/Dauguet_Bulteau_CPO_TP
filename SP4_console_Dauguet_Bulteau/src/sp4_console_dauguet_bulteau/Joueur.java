@@ -8,14 +8,14 @@ package sp4_console_dauguet_bulteau;
  *
  * @author bulte
  */
-public class Joueur {
+public class Joueur { // on définit la classe joueur et ses différents attributs
     String Nom;
     String Couleur;
     Jeton [] ListeJetons= new Jeton[21];
     int nombreDesintegrateurs;
     int nombreJetonsRestants;
     
-public Joueur (String unNom){
+public Joueur (String unNom){ //on définit le nom du joueur
   Nom=unNom ;
 }
 
@@ -23,10 +23,7 @@ public void affecterCouleur(String uneCouleur){
     Couleur=uneCouleur;
 }
    
-public boolean ajouterJeton(Jeton nombre){
-    
-    
-    // Attention a cette histoire de 21 ça devra peut-être être modifier tout- à l'heure
+public boolean ajouterJeton(Jeton nombre){ // on ajoute un jeton dans la liste de jetons du joueur
     
     
     if (nombreJetonsRestants!=21){
@@ -37,14 +34,13 @@ public boolean ajouterJeton(Jeton nombre){
         return false;
     }
     
-    //voir tp ajouter jeton de la liste
 }
 
-public void obtenirDesintegrateur(){
+public void obtenirDesintegrateur(){ // on incrémente le nombre de desintégrateurs
     nombreDesintegrateurs++;
 }
 
-public boolean utiliserDesintegrateur(){
+public boolean utiliserDesintegrateur(){ // cette méthode décrémente le nombre de désintegrateurs si il n'est pas égal à 0
     if (nombreDesintegrateurs==0){
         return false;
     }
