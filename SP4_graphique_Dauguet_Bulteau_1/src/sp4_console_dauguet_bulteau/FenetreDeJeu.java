@@ -25,6 +25,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         panneau_infos_joueur.setVisible(false);
         panneau_info_partie.setVisible(false);
         // cela permet de cacher les différents panneaux avant que la partie ne démarre
+        //On ne peut utiliser que le panneau sur lequel on entre les noms des joueurs
         for (int i = 5; i >= 0; i--) {
             for (int j = 0; j < 7; j++) {
                 CelluleGraphique cellGraph = new CelluleGraphique(grillejeu.CellulesJeu[i][j]);
@@ -32,21 +33,27 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
                         Cellule c = cellGraph.celluleAssociee;
                         if (c.jetonCourant == null) {
+                            //Il ne se passe rien si le cellule ne contient rien
                             return;
                         }
 
                         if (c.jetonCourant.Couleur.equals(joueurCourant.Couleur)) {
+                            //.Couleur permet de regarder la couleur associé au jeton
                             // On vérifie si le pion sur lequel appartient au joueur courant
                             message.setText("le joueur " + joueurCourant.Nom + " récupère un de ses jetons");
                             Jeton jrecup = c.recupererJeton();
                             joueurCourant.ajouterJeton(jrecup);
+                            //On récupère le jeton du joueur
                             c.supprimerJeton();
+                            // On enlève le jeton de la grille
                             joueursuivant();
                         } else {
                             if (joueurCourant.nombreDesintegrateurs > 0) {
                                 message.setText("le joueur " + joueurCourant.Nom + " désintégre un jeton");
+                                //  Ce message s'affiche dans le panneau message
                                 c.supprimerJeton();
                                 joueurCourant.nombreDesintegrateurs--;
+                                //Lorsqu'un désintegrateur et utilisé on en retire 1 au nombreDesintegrateurs possédé par le joueur courant
                                 joueursuivant();
                             } else {
                                 return;
@@ -55,7 +62,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                         }
                         for (int tasse = 0; tasse < 7; tasse++) {
                             grillejeu.tasserGrille(tasse);
-                            
+                            // On tasse toutes les colonnes de la grille
 
                         }
                         if (grillejeu.colonneRemplie(0) != true) {
@@ -89,12 +96,14 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                         panneau_grille.repaint();
                         boolean vict_j1 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[0]);
                         boolean vict_j2 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[1]);
+                        // On vérifie à l'aide de la fonction etreGagnantePourJoueur() sil'un des joueurs a gagné
                         if (vict_j1 && !vict_j2) {
                             message.setText("Victoire de " + ListeJoueurs[0].Nom);
                             // On affiche dans la console message le nom du joueur qui a gagné
                         }
                         if (vict_j2 && !vict_j1) {
                             message.setText("Victoire de " + ListeJoueurs[1].Nom);
+                            // On affiche dans la console message le nom du joueur qui a gagné 
                         }
                         if (vict_j1 && vict_j2) {
                             if (joueurCourant == ListeJoueurs[0]) {
@@ -102,8 +111,10 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                             } else {
                                 message.setText("Victoire de " + ListeJoueurs[1].Nom);
                             }
-                            //ici on vérifie que le joueur courant n'a pas gaggné en même temps que 
+                            //ici on vérifie que le joueur courant n'ai pas gagné en même temps que le joueur passif
+                            // Dans le cas contraire c'est le joueur passif qui est déclaré comme gagnant
                         }
+                        // On rajoute .Nom pour bien afficher le nom du joueur gagnant en string et non pas sous forme de Joueur ce qui est différent des noms entrés par les joueurs
 
                     }
                 });
@@ -311,14 +322,16 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
         setBounds(0, 0, 1018, 681);
     }// </editor-fold>//GEN-END:initComponents
-
+    //lorsque l'on clique sur un bouton, le code associé se réalise
+    // Sur les lignes çi-dessous on peut retrouver différents exemples
     private void btn_col_0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_0ActionPerformed
         jouerDansColonne(0);
         if (grillejeu.colonneRemplie(0) == true) {
             btn_col_0.setEnabled(false);
+            //Si la colonne se retrouve remplie alors le bouton en haut est désactivé
         }
         joueursuivant();
-
+        //On change de joueur une fois qu'il a joué
     }//GEN-LAST:event_btn_col_0ActionPerformed
 
     private void btn_startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_startActionPerformed
@@ -327,6 +340,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         initialiserPartie();
         panneau_grille.repaint();
         btn_start.setEnabled(false);
+        //Une fois que nous avons cliqué sur le bouton Start, il n'est plus cliquable et les autres boutons apparaissent
     }//GEN-LAST:event_btn_startActionPerformed
 
     private void btn_col_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_1ActionPerformed
@@ -335,6 +349,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             btn_col_1.setEnabled(false);
         }
         joueursuivant();
+        //On change de joueur une fois qu'il a joué
+        //Si la colonne se retrouve remplie alors le bouton en haut est désactivé
     }//GEN-LAST:event_btn_col_1ActionPerformed
 
     private void btn_col_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_2ActionPerformed
@@ -343,6 +359,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             btn_col_2.setEnabled(false);
         }
         joueursuivant();
+        //On change de joueur une fois qu'il a joué
+        //Si la colonne se retrouve remplie alors le bouton en haut est désactivé
     }//GEN-LAST:event_btn_col_2ActionPerformed
 
     private void btn_col_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_3ActionPerformed
@@ -351,6 +369,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             btn_col_3.setEnabled(false);
         }
         joueursuivant();
+        //On change de joueur une fois qu'il a joué
+        //Si la colonne se retrouve remplie alors le bouton en haut est désactivé
     }//GEN-LAST:event_btn_col_3ActionPerformed
 
     private void btn_col_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_4ActionPerformed
@@ -359,6 +379,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             btn_col_4.setEnabled(false);
         }
         joueursuivant();
+        //On change de joueur une fois qu'il a joué
+        //Si la colonne se retrouve remplie alors le bouton en haut est désactivé
     }//GEN-LAST:event_btn_col_4ActionPerformed
 
     private void btn_col_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_5ActionPerformed
@@ -368,6 +390,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         }
         
         joueursuivant();
+        //On change de joueur une fois qu'il a joué
+        //Si la colonne se retrouve remplie alors le bouton en haut est désactivé
     }//GEN-LAST:event_btn_col_5ActionPerformed
 
     private void btn_col_6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_col_6ActionPerformed
@@ -376,6 +400,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             btn_col_6.setEnabled(false);
         }
         joueursuivant();
+        //On change de joueur une fois qu'il a joué
+        //Si la colonne se retrouve remplie alors le bouton en haut est désactivé
     }//GEN-LAST:event_btn_col_6ActionPerformed
 
     int i = 0;
@@ -384,13 +410,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     public boolean jouerDansColonne(int indice_colonne) {
         Jeton Jet;
-        if (test == 0) {
-            if (joueurCourant == ListeJoueurs[1]) {
-                test = 1;
-            } else {
-                test = 2;
-            }
-        }
+        
         if (joueurCourant.Couleur == "Rouge") {
             Jet = joueurCourant.ListeJetons[i];
             i++;
@@ -398,30 +418,37 @@ public class FenetreDeJeu extends javax.swing.JFrame {
             Jet = joueurCourant.ListeJetons[j];
             j++;
         }
+        //On note dans un tableau le nb de pions de couleurs utilisés
 
         if (grillejeu.colonneRemplie(indice_colonne) != false) {
             System.out.println(indice_colonne);
             return false;
-
+            //Si la colonne choisi est remplie alors on ne peut pas y jouer
         }
         grillejeu.ajouterJetonDansLaColonne(Jet, indice_colonne + 1);
-
+        // Le +1 provient de l'ancienne version console ou le joueur entrait une valeur de colonne entre 1 et 7
+        //ici le bouton renvoit une valeur entre 0 et 6 soit une différence de 1
         for (int x = 0; x < 6; x++) {
+            // Au cours de cette partie on supprime le trou noir si il y en a un et on récupère le désintegrateur s'il était caché
             if (grillejeu.CellulesJeu[x][indice_colonne].presenceDesintegrateurs() && grillejeu.celluleOccupee(x, indice_colonne)) {
                 grillejeu.CellulesJeu[x][indice_colonne].recupererDesintegrateur();
                 joueurCourant.nombreDesintegrateurs++;
+                //Si le joueur récupère un désintégrateur alors il a son nmbre de désintégrateur + 1
                 System.out.println(joueurCourant.Nom);
                 System.out.println(joueurCourant.nombreDesintegrateurs);
+                // test utilisé pour vérifier le bon fonctionnement de l'algrithme
+                
             }
             if (grillejeu.CellulesJeu[x][indice_colonne].presenceTrouNoir() && grillejeu.celluleOccupee(x, indice_colonne)) {
                 grillejeu.CellulesJeu[x][indice_colonne].activerTrouNoir();
-
+                //On active le trou noir ce qui supprime le pion joué dans la case et supprimme le trou noir
             }
             
         }
         for (int y = 0; y < 6; y++) {
             if (grillejeu.CellulesJeu[y][indice_colonne].presenceDesintegrateurs() && grillejeu.celluleOccupee(y, indice_colonne)) {
                 grillejeu.CellulesJeu[y][indice_colonne].recupererDesintegrateur();
+                // Dans le cas ou on retrouve un intégrateurs, le joueur courant le récupère
                 joueurCourant.nombreDesintegrateurs++;
                 System.out.println(joueurCourant.Nom);
                 System.out.println(joueurCourant.nombreDesintegrateurs);
@@ -429,36 +456,45 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         }
 
         panneau_grille.repaint();
-
+        // On réctualise la grille
         lbl_J1_desint.setText(ListeJoueurs[0].nombreDesintegrateurs + "");
         lbl_J2_desint.setText(ListeJoueurs[1].nombreDesintegrateurs + "");
-
+        // Le .nombreDesintegrateurs permet de donner le nombre de désintegrateurs associé au joueur
+        // On convertie le int en string grace au +""
         panneau_grille.repaint();
         boolean vict_j1 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[0]);
         boolean vict_j2 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[1]);
         if (vict_j1 && !vict_j2) {
             message.setText("Victoire de " + ListeJoueurs[0].Nom);
+            // On affiche dans la console message le nom du joueur qui a gagné
         }
         if (vict_j2 && !vict_j1) {
             message.setText("Victoire de " + ListeJoueurs[1].Nom);
+            // On affiche dans la console message le nom du joueur qui a gagné
         }
         if (vict_j1 && vict_j2) {
             if (joueurCourant == ListeJoueurs[1]) {
                 message.setText("Victoire de " + ListeJoueurs[1].Nom);
             } else {
                 message.setText("Victoire de " + ListeJoueurs[0].Nom);
+                //ici on vérifie que le joueur courant n'ai pas gagné en même temps que le joueur passif
+                // Dans le cas contraire c'est le joueur passif qui est déclaré comme gagnant
+                        
             }
+         
         }
         return true;
+        // On rajoute .Nom pour bien afficher le nom du joueur gagnant en string et non pas sous forme de Joueur ce qui est différent des noms entrés par les joueurs
     }
 
     public void joueursuivant() {
-        if (joueurCourant == ListeJoueurs[0]) {
+        if (joueurCourant == ListeJoueurs[0]) {// on vérifie l'égalité
             joueurCourant = ListeJoueurs[1];
         } else {
             joueurCourant = ListeJoueurs[0];
         }
         lbl_jcourant.setText(joueurCourant.Nom);
+        // Ici on change de joueur courant, on utilise cette fonction a chaque fin de tour
     }
 
     /**
@@ -492,19 +528,21 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FenetreDeJeu().setVisible(true);
+                //Ici on affiche la fenetre de jeu globale
             }
         });
     }
 
     public void initialiserPartie() {
         String nomJoueur1 = nom_joueur1.getText();// permet de récupérer le nom tapé dans la cellule
-        Joueur J1 = new Joueur(nomJoueur1);
+        Joueur J1 = new Joueur(nomJoueur1);// On associe le nom du jouer dans la variable de type joueur
         String nomJoueur2 = nom_joueur2.getText();
         Joueur J2 = new Joueur(nomJoueur2);
 
         Random sort = new Random();
         int Joue;
         Joue = sort.nextInt(2);
+        // On tire un int au hasard entre 1 et 2 pour attribuer le 1er à jouer au hasard
         if (Joue == 1) {
             ListeJoueurs[0] = J1;
             ListeJoueurs[1] = J2;
@@ -514,6 +552,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         }
         joueurCourant = ListeJoueurs[0];
         attribuerCouleursAuxJoueurs();
+        // On attribue une couleur au hasard aux joueurs
         lbl_J1_nom.setText(ListeJoueurs[0].Nom);
         lbl_J2_nom.setText(ListeJoueurs[1].Nom);
         lbl_J1_couleur.setText(ListeJoueurs[0].Couleur);
@@ -521,44 +560,51 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         lbl_J1_desint.setText(ListeJoueurs[0].nombreDesintegrateurs + "");
         lbl_J2_desint.setText(ListeJoueurs[1].nombreDesintegrateurs + "");//les guillemets sont là pour donner un string
         lbl_jcourant.setText(joueurCourant.Nom);
+        //On utilise .setText pour afficher les informations dans les panneaux associés
         int compteur = 0;
-
+        //on initialise la variable compteur pour créer les 5 trous noirs
         while (compteur < 5) {
             Random Aleat = new Random();
-            int lg = Aleat.nextInt(6);
-            int cln = Aleat.nextInt(7);
+            int lg = Aleat.nextInt(6);// Tirage aléatoire entre 1 et 6
+            int cln = Aleat.nextInt(7);// Tirage aléatoire entre 1 et 7
             if (grillejeu.CellulesJeu[lg][cln].presenceTrouNoir() == false) {
                 grillejeu.placerTrouNoir(lg, cln);
+                //On place le trou noir à des coordonnées aux hasard
                 compteur = compteur + 1;
             }
+            // Une fois les 5 trous noir placé on sort automatiquement de la boucle
         }
 
         int compteur2 = 0;
         while (compteur2 < 2) {
             Random Aleat = new Random();
-            int lg = Aleat.nextInt(6);
-            int cln = Aleat.nextInt(7);
+            int lg = Aleat.nextInt(6);// Tirage aléatoire entre 1 et 6
+            int cln = Aleat.nextInt(7);// Tirage aléatoire entre 1 et 7
+            // On vérifie la présence trou noirs et de désintegrateurs
             if (grillejeu.CellulesJeu[lg][cln].presenceDesintegrateurs() == false && grillejeu.CellulesJeu[lg][cln].presenceTrouNoir() == true) {
                 grillejeu.placerDesintegrateur(lg, cln);
                 compteur2 = compteur2 + 1;
             }
+            //Ici on place 2 désintegrateurs dans des zones ou on trouve des désintegrateurs 
         }
 
         int compteur3 = 0;
         while (compteur3 < 3) {
             Random Aleat = new Random();
-            int lg = Aleat.nextInt(6);
-            int cln = Aleat.nextInt(7);
+            int lg = Aleat.nextInt(6);// Tirage aléatoire entre 1 et 6
+            int cln = Aleat.nextInt(7);// Tirage aléatoire entre 1 et 7
+            // On vérifie la présence trou noirs et de désintegrateurs
             if (grillejeu.CellulesJeu[lg][cln].presenceDesintegrateurs() == false && grillejeu.CellulesJeu[lg][cln].presenceTrouNoir() == false) {
                 grillejeu.placerDesintegrateur(lg, cln);
                 compteur3 = compteur3 + 1;
             }
+            //On va placer les 3 derniers désintegrateurs dans des zonnes sans desintegrateurs ni trous noir
         }
         //ici on affiche les différentes informations sur les joueurs dans les cases correspondant au label appelé ex: lbl_J1_desint
         for (int i = 0; i < 21; i++) {
             Jeton Jeton1 = new Jeton("Rouge");
             Jeton Jeton2 = new Jeton("Jaune");
-
+            // Ici on créer les 21 jetons pour chaque joueurs
             if (ListeJoueurs[0].Couleur == "Rouge") {
                 ListeJoueurs[0].ListeJetons[i] = Jeton1;
                 ListeJoueurs[1].ListeJetons[i] = Jeton2;
@@ -573,8 +619,8 @@ public class FenetreDeJeu extends javax.swing.JFrame {
     public void attribuerCouleursAuxJoueurs() {
         int var;
         Random Aleat = new Random();
-        var = Aleat.nextInt(2);
-
+        var = Aleat.nextInt(2);// Tirage aléatoire entre 1 et 2
+        // On attribue les couleurs au hasard pour les joueurs
         if (var == 1) {
             ListeJoueurs[0].Couleur = "Rouge";
             ListeJoueurs[1].Couleur = "Jaune";
