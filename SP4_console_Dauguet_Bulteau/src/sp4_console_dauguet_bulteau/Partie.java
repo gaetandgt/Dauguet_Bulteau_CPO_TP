@@ -119,92 +119,92 @@ public void debuterPartie(){ // c'est la plus grande partie de notre code, celle
                 sc.next();
             }
         }
-        if (Col==2){
-            if(joueurCourant.nombreDesintegrateurs>0){
+        if (Col==2){ // Le joueur a rentré 2, il souhaite jouer un désintegrateur
+            if(joueurCourant.nombreDesintegrateurs>0){ // on vérifie qu'il possède bien un désintegrateur
                 int verif=0;
-                while(verif==0){
+                while(verif==0){ // on effectue cette boucle tant que l'utilisateur n'a pas désigné les coordonnées d'un jeton adverse
                     System.out.println("Entrez la colonne");
-                    Colo=sc.nextInt();
+                    Colo=sc.nextInt();// on récupère le numéro de la colonne que le joueur a donné
                     System.out.println("Entrez la ligne");
-                    Ligne=sc.nextInt();
+                    Ligne=sc.nextInt(); // on récupère le numéro de la ligne que le joueur a donné
                 
-                    if(joueurCourant.Couleur!=grillejeu.lireCouleurDuJeton(Ligne-1,Colo-1)){
-                        grillejeu.supprimerJeton(Ligne-1, Colo-1);
-                        joueurCourant.nombreDesintegrateurs--;
-                        grillejeu.tasserGrille(Colo-1);
-                        verif=1;
+                    if(joueurCourant.Couleur!=grillejeu.lireCouleurDuJeton(Ligne-1,Colo-1)){ // on vérifie que les coordonnées correspondent bien à un jeton adverse
+                        grillejeu.supprimerJeton(Ligne-1, Colo-1); // si la condition est vérifiée, on supprime le jeton adverse
+                        joueurCourant.nombreDesintegrateurs--; // on décrémente donc le nombre de désintegrateurs du joueur
+                        grillejeu.tasserGrille(Colo-1); // On tasse ensuite la grille de la colone ou le desintegrateur a été joué
+                        verif=1;// on modifie notre variable de vérification pour sortir du tant que
                 }
                 
             
-                    else{
+                    else{ // si le joueur a sélectionné un de ses jetons, on lui demande à nouveau de rentrer les coordonnées d'un jeton à désintegrer
                         System.out.println("Vous ne pouvez pas désintégrer un de vos jetons, veuillez rentrer les coordonnées d'un jeton adverse");
                     }
                 }
             }
             else{
-                Col=1;
+                Col=1; // si le joueur ne possède pas de désintegrateur, on lui demande de jouer un jeton à la place
                 System.out.println("Vous n'avez pas de désintegrateurs, veuillez placer un jeton");
             }
             
         }
         int verif3=0;
-        if (Col==3){
+        if (Col==3){ // le joueur a choisi de récupérer un jeton
             int verif2=0;
-                for (int k=0;k<6;k++){
+                for (int k=0;k<6;k++){ // on parcourt toute la grille pour vérifier que le joueur possède bien au moins un jeton sur la grille
                     for (int g=0;g<7;g++){
-                        if (grillejeu.celluleOccupee(k, g)){
+                        if (grillejeu.celluleOccupee(k, g)){ // si on tomber sur une cellule occupée, on vérifie la couleur du jeton à l'intérieur
                             if (grillejeu.lireCouleurDuJeton(k, g)==joueurCourant.Couleur){
-                                verif3=1;
+                                verif3=1; 
                             }
                         }
                     }
                 }
-                if(verif3==1){
-                    while(verif2==0){
+                if(verif3==1){ // si un jeton est bien présent on valide le test et on demande au joueur de donner les coordonnées du jeton qu'il souhaite récupérer
+                    while(verif2==0){ // tant que le joueur ne rentre pas les coordonnées d'un de ses jetons on effectue la boucle
                         System.out.println("Entrez la colonne");
                         Colo=sc.nextInt();
                         System.out.println("Entrez la ligne");
                         Ligne=sc.nextInt();
                 
-                    if(joueurCourant.Couleur==grillejeu.lireCouleurDuJeton(Ligne-1,Colo-1)){
-                        grillejeu.recupererJeton(Ligne-1, Colo-1);
-                        grillejeu.tasserGrille(Colo-1);
-                        verif2=1;
+                    if(joueurCourant.Couleur==grillejeu.lireCouleurDuJeton(Ligne-1,Colo-1)){ // on vérifie que les coordonnées entrées correspondent à un jeton de la bonne couleur
+                        grillejeu.recupererJeton(Ligne-1, Colo-1); // on récupère le jeton
+                        grillejeu.tasserGrille(Colo-1); // on tasse la colonne où le jeton a été récupéré
+                        verif2=1; // on valide la vérification pour sortir de la boucle tant que
                     }
                     else{
-                        System.out.println("Veuillez sélectionner un de vos jetons");
+                        System.out.println("Veuillez sélectionner un de vos jetons"); // si les coordonnées ne sont pas valides on demande au joueur de recommencer
                     }
                     }
                 }
                 else{
-                    System.out.println("Vous n'avez pas de jeton positionné sur la grille, veuillez jouer un jeton");
-                    Col=1;
+                    System.out.println("Vous n'avez pas de jeton positionné sur la grille, veuillez jouer un jeton"); // si le test concernant la possession d'au moins 1 jeton sur la grille est négatif, on demande au joueur de jouer un jeton
+                    Col=1; // on passe donc sur Col=1 soit la boucle pour jouer un jeton
                 }
             }
         
         
-        if (Col==1){
-            System.out.println("Entrez la colonne dans laquelle vous allez jouer");
+        if (Col==1){ // le joueur a choisi de jouer un jeton
+            System.out.println("Entrez la colonne dans laquelle vous allez jouer"); // on demande la colonne dans laquelle le joueur souhaite jouer son jeton
             
             test=1;
-            while (test!=0){
+            while (test!=0){ // cette boucle vérifie que le joueur rentre bien une donnée valable pour le numéro de colonne qu'il doit choisir
                 test=0;
                 try{
                     Colo=sc.nextInt();
                 }
                 catch(Exception e){
-                    test=1;
+                    test=1; // tant qu'il y a une erreur, test=1 et la boucle se répète
                     System.out.println("erreur");
                     sc.reset();
                     sc.next();
                 }
             }
             
-            while (grillejeu.colonneRemplie(Colo-1)!=false){
+            while (grillejeu.colonneRemplie(Colo-1)!=false){ // on vérifie que la colonne oul le joueur a choisi de jouer n'est pas pleine
             
                 test=1;
-                System.out.println("la colonne est pleine, choisissez de nouveau");
-                while (test!=0){
+                System.out.println("la colonne est pleine, choisissez de nouveau"); // à chaque fois que le joueur choisit une colonne pleine, on lui demande de jouer autre part
+                while (test!=0){ // on vérifie à nouveau, à chaque fois que le joueur entre une nouvelle donnée, qu'elle concorde avec le type de données qu'il doit rentrer
                     test=0;
                     try{
                         Colo=sc.nextInt();
@@ -223,43 +223,37 @@ public void debuterPartie(){ // c'est la plus grande partie de notre code, celle
             //if celluleOccupee()
 
             Jeton Jet;
-            if (joueurCourant.Couleur=="Rouge"){
+            if (joueurCourant.Couleur=="Rouge"){ 
                 Jet=joueurCourant.ListeJetons[i];
-                i++;
+                i++; // on incrémente le nombre de jetons rouges qui ont été utilisés
             }
             else{
                 Jet=joueurCourant.ListeJetons[j];
-                j++;
+                j++; // on incrémente le nombre de jetons jaunes qui ont été utilisés
             }
         
             grillejeu.ajouterJetonDansLaColonne(Jet, Colo);     
         }
-        for(int y=0; y<6; y++){
-            if (grillejeu.CellulesJeu[y][Colo-1].presenceDesintegrateur() && grillejeu.celluleOccupee(y,Colo-1)){
-                grillejeu.CellulesJeu[y][Colo-1].recupererDesintegrateur();
-                joueurCourant.nombreDesintegrateurs++;
-                System.out.println(ListeJoueurs[0].Nom);
-                System.out.println(ListeJoueurs[1].Nom);
-                System.out.println(ListeJoueurs[0].nombreDesintegrateurs);
-                System.out.println(ListeJoueurs[1].nombreDesintegrateurs);
+        for(int y=0; y<6; y++){ // on va parcourir toute la grille pour savoir si un jeton n'est pas positionné sur un désintégrateut et que, par conséquent, il le récupère
+            if (grillejeu.CellulesJeu[y][Colo-1].presenceDesintegrateur() && grillejeu.celluleOccupee(y,Colo-1)){ // on teste sur chaque cellule si il y a un jeton ET un désintegrateur présents
+                grillejeu.CellulesJeu[y][Colo-1].recupererDesintegrateur(); // si c'est le cas, le joueur récupère le désintégrateur (celui-ci disparaît donc de la grille)
+                joueurCourant.nombreDesintegrateurs++; // on incrémente le nombre de désintégrateurs du joueur qui l'a récupéré
+                System.out.println(ListeJoueurs[0].Nom+ListeJoueurs[0].nombreDesintegrateurs); //on affiche le nombre de désintégrateurs de chaque joueur pour qu'ils sachent toujours combien ils en ont
+                System.out.println(ListeJoueurs[1].Nom+ListeJoueurs[1].nombreDesintegrateurs); //c'est utile par exemple dans le cas où le joueur a joué sur un trou noir et ne sait donc pas qu'il a récupéré un désintégrateur
             }
         }
-        for(int x=0; x<6; x++){
-            if (grillejeu.CellulesJeu[x][Colo-1].presenceTrouNoir() && grillejeu.celluleOccupee(x,Colo-1)){
-                            grillejeu.CellulesJeu[x][Colo-1].activerTrouNoir();
+        for(int x=0; x<6; x++){ // on va parcourir toute la grille pour savoir si un jeton n'a pas été placé sur un trou noir
+            if (grillejeu.CellulesJeu[x][Colo-1].presenceTrouNoir() && grillejeu.celluleOccupee(x,Colo-1)){ // on teste chaque cellule pour savoir si il y a un trou noir ET un jeton présent
+                            grillejeu.CellulesJeu[x][Colo-1].activerTrouNoir(); // si c'est le cas on active le trou noir, qui disparaît et emmène le jeton avec lui
             }
         }
         
-        grillejeu.afficherGrilleSurConsole();
+        grillejeu.afficherGrilleSurConsole(); // on affiche finalement la nouvelle grille telle qu'elle est après le tour de jeu et tous les changements
         
-        //if (grillejeu.etreGagnantePourJoueur(joueurCourant)==true){
-        //    break;
-        //}
-        
-        if (ListeJoueurs[0]==joueurCourant){
+        if (ListeJoueurs[0]==joueurCourant){ // on switch du joueur 0 au joueur 1 si le joueur 0 jouait
             joueurCourant=ListeJoueurs[1];
         }
-        else{
+        else{ // on switch du joueur 1 au joueur 0 si le joueur 1 jouait
             joueurCourant=ListeJoueurs[0];
         }
         
@@ -269,12 +263,12 @@ public void debuterPartie(){ // c'est la plus grande partie de notre code, celle
         }
         
     }
-    System.out.println(joueurCourant);
+    System.out.println(joueurCourant); 
     System.out.println(ListeJoueurs[0]);
-    if (grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])==true ){
+    if (grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])==true ){ // on teste la grille pour savoir si elle est gagnante pour le joueur 0
         
-        if (joueurCourant!=ListeJoueurs[0]){
-            if (grillejeu.etreGagnantePourJoueur(ListeJoueurs[1])==true){
+        if (joueurCourant!=ListeJoueurs[0]){ // on teste le joueur courant pour déterminer si le joueur courant est le joueur 0 ou 1
+            if (grillejeu.etreGagnantePourJoueur(ListeJoueurs[1])==true){ // on explore les différentes combinaisons de grilles gagnantes et de joueurs courant pour déterminer le vainqueur, par exemple en cas d égalité
                 System.out.println("le gagnant est " + ListeJoueurs[1].Nom);
             }
             else{
@@ -287,7 +281,7 @@ public void debuterPartie(){ // c'est la plus grande partie de notre code, celle
     }
     else{
         
-        if (joueurCourant!=ListeJoueurs[1]){
+        if (joueurCourant!=ListeJoueurs[1]){ // on explore les autres combinaisons de vainqueur quand le joueur courant est le joueur 0
             if (grillejeu.etreGagnantePourJoueur(ListeJoueurs[0])==true){
                 System.out.println("le gagnant est " + ListeJoueurs[0].Nom);
             }
@@ -300,18 +294,19 @@ public void debuterPartie(){ // c'est la plus grande partie de notre code, celle
         }
     }
 }
-
-public void attribuerCouleursAuxJoueurs(){
+// au final, si l'on a une égalité, c'est à dire que la grille soit gagnante pour les 2 joueurs à la fois, c'est le joueur dont ce nétait pas le tour de jouer qui est gagnant.
+// si un seul joueur a une grille gagnante, alors il est déclaré vainqueur
+public void attribuerCouleursAuxJoueurs(){ // cette méthode permet d'attribuer les couleurs aux joueurs de façon aléatoire
     int var;
     Random Aleat = new Random();
-    var = Aleat.nextInt(2);
+    var = Aleat.nextInt(2); // on définit var égal à 1 ou 2 aléatoirement
     
     if (var==1){
-        ListeJoueurs[0].Couleur="Rouge";
+        ListeJoueurs[0].Couleur="Rouge"; // dans le premier cas, le joueur 0 est rouge et le joueur 1 est jaune
         ListeJoueurs[1].Couleur="Jaune";
     }
     else{
-        ListeJoueurs[1].Couleur="Rouge";
+        ListeJoueurs[1].Couleur="Rouge"; // dans le deuxième cas, le joueur 1 est rouge et le joueur 0 est jaune
         ListeJoueurs[0].Couleur="Jaune";
     }
     }
