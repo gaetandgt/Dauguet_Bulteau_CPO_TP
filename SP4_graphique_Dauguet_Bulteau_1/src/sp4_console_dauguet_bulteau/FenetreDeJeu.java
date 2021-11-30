@@ -86,13 +86,12 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                         if (grillejeu.colonneRemplie(6) != true) {
                             btn_col_6.setEnabled(true);
                         }
-                        
+
                         // ces lignes permettent de réactiver les boutons en haut des colonnes dans le cas ou la colonne n'est plus rempli
-                        
                         panneau_grille.repaint();// cette ligne réactualise la grille
                         lbl_J1_desint.setText(ListeJoueurs[0].nombreDesintegrateurs + "");
                         lbl_J2_desint.setText(ListeJoueurs[1].nombreDesintegrateurs + "");
-                        
+
                         panneau_grille.repaint();
                         boolean vict_j1 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[0]);
                         boolean vict_j2 = grillejeu.etreGagnantePourJoueur(ListeJoueurs[1]);
@@ -388,7 +387,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
         if (grillejeu.colonneRemplie(5) == true) {
             btn_col_5.setEnabled(false);
         }
-        
+
         joueursuivant();
         //On change de joueur une fois qu'il a joué
         //Si la colonne se retrouve remplie alors le bouton en haut est désactivé
@@ -410,7 +409,7 @@ public class FenetreDeJeu extends javax.swing.JFrame {
 
     public boolean jouerDansColonne(int indice_colonne) {
         Jeton Jet;
-        
+
         if (joueurCourant.Couleur == "Rouge") {
             Jet = joueurCourant.ListeJetons[i];
             i++;
@@ -437,13 +436,13 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 System.out.println(joueurCourant.Nom);
                 System.out.println(joueurCourant.nombreDesintegrateurs);
                 // test utilisé pour vérifier le bon fonctionnement de l'algrithme
-                
+
             }
             if (grillejeu.CellulesJeu[x][indice_colonne].presenceTrouNoir() && grillejeu.celluleOccupee(x, indice_colonne)) {
                 grillejeu.CellulesJeu[x][indice_colonne].activerTrouNoir();
                 //On active le trou noir ce qui supprime le pion joué dans la case et supprimme le trou noir
             }
-            
+
         }
         for (int y = 0; y < 6; y++) {
             if (grillejeu.CellulesJeu[y][indice_colonne].presenceDesintegrateurs() && grillejeu.celluleOccupee(y, indice_colonne)) {
@@ -479,9 +478,9 @@ public class FenetreDeJeu extends javax.swing.JFrame {
                 message.setText("Victoire de " + ListeJoueurs[0].Nom);
                 //ici on vérifie que le joueur courant n'ai pas gagné en même temps que le joueur passif
                 // Dans le cas contraire c'est le joueur passif qui est déclaré comme gagnant
-                        
+
             }
-         
+
         }
         return true;
         // On rajoute .Nom pour bien afficher le nom du joueur gagnant en string et non pas sous forme de Joueur ce qui est différent des noms entrés par les joueurs
