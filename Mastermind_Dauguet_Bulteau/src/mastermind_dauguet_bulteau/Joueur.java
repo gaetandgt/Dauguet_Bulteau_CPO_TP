@@ -9,5 +9,12 @@ package mastermind_dauguet_bulteau;
  * @author gaeta
  */
 public class Joueur {
-    
+    String Nom;
+    int nbCoupsRestants; 
+
+
+public Joueur(String unNom){
+    unNom=Nom;
+}
+
 }
