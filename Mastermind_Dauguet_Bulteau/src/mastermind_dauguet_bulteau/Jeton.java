@@ -9,5 +9,11 @@ package mastermind_dauguet_bulteau;
  * @author gaeta
  */
 public class Jeton {
-    
+    String Couleur;
+    public Jeton(String unecouleur){
+    Couleur=unecouleur;
+    }
+    public String lireCouleur(){
+        return(Couleur);
+    }
 }
