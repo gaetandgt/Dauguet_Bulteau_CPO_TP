@@ -17,4 +17,13 @@ public Joueur(String unNom){
     unNom=Nom;
 }
 
+public boolean JoueUnCoup(){
+    if(nbCoupsRestants==0){
+        return false;
+    }
+    else{
+        nbCoupsRestants--;
+        return true;
+    }
+}
 }
