@@ -20,6 +20,7 @@ public class CelluleGraphique extends JButton{
     ImageIcon img_desint = new javax.swing.ImageIcon(getClass().getResource("/Image/desintegrateur.png")) ;
     ImageIcon img_jetonRouge = new javax.swing.ImageIcon(getClass().getResource("/Image/jetonRouge.png")) ;
     ImageIcon img_trouNoir = new javax.swing.ImageIcon(getClass().getResource("/Image/trouNoir.png")) ;
+    //On utilise ces lignes pour associer des images à des variables 
     public CelluleGraphique (Cellule uneCellule) {
         celluleAssociee = uneCellule ;
     }
@@ -36,15 +37,16 @@ public class CelluleGraphique extends JButton{
         }
         else{
             String couleur_jeton =celluleAssociee.lireCouleurDuJeton();
+            //.lireCouleurDuJeton() permet de lire la couleur du jeton associé a une cellule du puissance 4, on aura null, Rouge  ou Jaune
             switch (couleur_jeton){
                 case "vide":
                     setIcon (img_vide);//on affiche les images des cellules vides dans toutes les cellules dans ce cas
                     break;
                 case "Rouge":
-                    setIcon (img_jetonRouge);
+                    setIcon (img_jetonRouge);//on affiche les images de Jetons rouge dans toutes les cellules dans ce cas
                     break;
                 case "Jaune":
-                    setIcon (img_jetonJaune);
+                    setIcon (img_jetonJaune);//on affiche les images de Jetons Jaune dans toutes les cellules dans ce cas
                     break;
             }
         }

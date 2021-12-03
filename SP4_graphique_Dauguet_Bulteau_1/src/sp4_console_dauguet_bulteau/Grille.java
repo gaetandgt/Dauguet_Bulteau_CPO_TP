@@ -8,6 +8,7 @@ package sp4_console_dauguet_bulteau;
  *
  * @author bulte
  */
+//Code identique à la partie console, les informations sont dans l'autre compte rendu
 public class Grille {
     Cellule [][] CellulesJeu= new Cellule[6][7];
     
