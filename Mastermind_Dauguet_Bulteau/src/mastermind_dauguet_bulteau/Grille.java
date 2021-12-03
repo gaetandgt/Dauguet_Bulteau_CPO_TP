@@ -15,14 +15,33 @@ public class Grille {
 public Grille (){ 
     for (int i=0;i<4;i++){
         for (int j=0;j<12;j++){
-            String couleur=null;
-            CellulesJeu[i][j]=new Cellule(couleur);
+            CellulesJeu[i][j]=new Cellule();
         }
     }
 }
 
+public String lireCouleurDuJeton(int ligne, int colonne){
+    return CellulesJeu[ligne][colonne].lireCouleur();
+}
 
+public boolean celluleOccupee(int ligne, int colonne){
+    if (CellulesJeu[ligne][colonne].Couleur!=null){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
+public boolean supprimerCouleur(int ligne, int colonne){ 
+    if(celluleOccupee(ligne,colonne)==true){
+        CellulesJeu[ligne][colonne].Couleur=null;
+        return true;
+    }
+    else{
+        return false;
+    }
+}
 
 
 }

@@ -11,8 +11,8 @@ package mastermind_dauguet_bulteau;
 public class Cellule {
     String Couleur;
     
-public Cellule(String unecouleur){
-    Couleur=unecouleur;
+public Cellule(){
+    Couleur=null;
     }
 
 public String lireCouleur(){
