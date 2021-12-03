@@ -9,15 +9,20 @@ package mastermind_dauguet_bulteau;
  * @author gaeta
  */
 public class Grille {
-    Jeton [][] CellulesJeu= new Jeton[4][12];
+    Cellule [][] CellulesJeu= new Cellule[4][12];
     
     
 public Grille (){ 
-    for (int i=0;i<3;i++){
-        for (int j=0;j<11;j++){
-            CellulesJeu[i][j]=new Jeton();
+    for (int i=0;i<4;i++){
+        for (int j=0;j<12;j++){
+            String couleur=null;
+            CellulesJeu[i][j]=new Cellule(couleur);
         }
     }
 }
-}
 
+
+
+
+
+}
