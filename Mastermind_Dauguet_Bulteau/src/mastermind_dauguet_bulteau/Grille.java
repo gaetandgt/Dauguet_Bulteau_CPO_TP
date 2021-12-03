@@ -33,7 +33,7 @@ public boolean celluleOccupee(int ligne, int colonne){
     }
 }
 
-public boolean supprimerCouleur(int ligne, int colonne){ 
+public boolean viderCellule(int ligne, int colonne){ 
     if(celluleOccupee(ligne,colonne)==true){
         CellulesJeu[ligne][colonne].Couleur=null;
         return true;
