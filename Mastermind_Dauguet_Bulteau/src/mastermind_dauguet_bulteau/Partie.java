@@ -12,6 +12,7 @@ import java.util.Random;
 public class Partie {
     Grille grillejeu;
     String [] code = new String [4];
+    String [] CodeJoueur = new String [4];
     public void initialiserPartie(){
         
     }
