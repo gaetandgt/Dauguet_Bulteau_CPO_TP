@@ -20,7 +20,7 @@ public Grille (){
     }
 }
 
-public String lireCouleurDuJeton(int ligne, int colonne){
+public String lireCouleurDeLaCellule(int ligne, int colonne){
     return CellulesJeu[ligne][colonne].lireCouleur();
 }
 
@@ -33,7 +33,7 @@ public boolean celluleOccupee(int ligne, int colonne){
     }
 }
 
-public boolean supprimerCouleur(int ligne, int colonne){ 
+public boolean viderCellule(int ligne, int colonne){ 
     if(celluleOccupee(ligne,colonne)==true){
         CellulesJeu[ligne][colonne].Couleur=null;
         return true;
@@ -43,5 +43,9 @@ public boolean supprimerCouleur(int ligne, int colonne){
     }
 }
 
-
+public boolean ajouterCouleur(int ligne, int colonne){
+    if(celluleOccupee(ligne,colonne)==false){
+      CellulesJeu[ligne][colonne].couleurDefinie;
+    }
+}
 }
