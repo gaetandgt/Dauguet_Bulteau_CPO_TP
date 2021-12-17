@@ -19,4 +19,7 @@ public String lireCouleur(){
     return(Couleur);
 }
 
+public String ajouterCouleur(){
+    if 
+}
 }
