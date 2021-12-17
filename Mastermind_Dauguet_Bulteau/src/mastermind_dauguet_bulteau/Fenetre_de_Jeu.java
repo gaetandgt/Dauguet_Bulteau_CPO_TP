@@ -15,6 +15,7 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
      */
     public Fenetre_de_Jeu() {
         initComponents();
+        Panneau_grille.setVisible(true);
     }
 
     /**
@@ -26,23 +27,58 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        Panneau_grille = new javax.swing.JPanel();
+        jButton_Vert = new javax.swing.JButton();
+        jButton_Dore = new javax.swing.JButton();
+        jButton_Bleu = new javax.swing.JButton();
+        jButton_Violet = new javax.swing.JButton();
+        jButton_Rouge = new javax.swing.JButton();
+        jButton_Jaune = new javax.swing.JButton();
+        jButton_Blanc = new javax.swing.JButton();
+        jButton_Argent = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        Panneau_grille.setForeground(new java.awt.Color(111, 111, 151));
+        Panneau_grille.setToolTipText("");
+
+        javax.swing.GroupLayout Panneau_grilleLayout = new javax.swing.GroupLayout(Panneau_grille);
+        Panneau_grille.setLayout(Panneau_grilleLayout);
+        Panneau_grilleLayout.setHorizontalGroup(
+            Panneau_grilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 900, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        Panneau_grilleLayout.setVerticalGroup(
+            Panneau_grilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 390, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, 900, 390));
+        getContentPane().add(Panneau_grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 900, 390));
+
+        jButton_Vert.setText("jButton1");
+        getContentPane().add(jButton_Vert, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 120, 120));
+
+        jButton_Dore.setText("jButton1");
+        getContentPane().add(jButton_Dore, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 120, 120));
+
+        jButton_Bleu.setText("jButton1");
+        getContentPane().add(jButton_Bleu, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 210, 120, 120));
+
+        jButton_Violet.setText("jButton1");
+        getContentPane().add(jButton_Violet, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 120, 120));
+
+        jButton_Rouge.setText("jButton1");
+        getContentPane().add(jButton_Rouge, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 120, 120));
+
+        jButton_Jaune.setText("jButton1");
+        getContentPane().add(jButton_Jaune, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 120, 120));
+
+        jButton_Blanc.setText("jButton1");
+        getContentPane().add(jButton_Blanc, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 340, 120, 120));
+
+        jButton_Argent.setText("jButton1");
+        getContentPane().add(jButton_Argent, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 120, 120));
 
         setBounds(0, 0, 1243, 636);
     }// </editor-fold>//GEN-END:initComponents
@@ -83,6 +119,14 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel Panneau_grille;
+    private javax.swing.JButton jButton_Argent;
+    private javax.swing.JButton jButton_Blanc;
+    private javax.swing.JButton jButton_Bleu;
+    private javax.swing.JButton jButton_Dore;
+    private javax.swing.JButton jButton_Jaune;
+    private javax.swing.JButton jButton_Rouge;
+    private javax.swing.JButton jButton_Vert;
+    private javax.swing.JButton jButton_Violet;
     // End of variables declaration//GEN-END:variables
 }
