@@ -4,6 +4,8 @@
  */
 package mastermind_dauguet_bulteau;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author bulte
@@ -23,15 +25,23 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     public Fenetre_de_Jeu() {
         initComponents();
         Panneau_grille.setVisible(true);
+        jButton_Argent.setIcon(img_Argent);
+        String []test= new String[4];
         CelluleGraphique cellGraph = new CelluleGraphique(grillejeu.CellulesJeu[i][j]);
         cellGraph.addActionListener(new java.awt.event.ActionListener() {
+        @Override
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             Cellule c = cellGraph.celluleAssociee;
-            while (i<4){
-
+            if (j!=4){
+                test[j]=Boule;
+                j++;
             }
-            i=0;
-            j++;
+            if (j==4){
+                j=0;
+                
+            }
+            
+            
 
         }
         });
@@ -163,44 +173,64 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
         setBounds(0, 0, 1243, 636);
     }// </editor-fold>//GEN-END:initComponents
     int i=0;
+    String Boule;
+    ImageIcon img_Argent = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleargent.png"));
+    ImageIcon img_Blanche = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleblanche.png"));
+    ImageIcon img_Bleu = new javax.swing.ImageIcon(getClass().getResource("Images/Boulebleu.png"));
+    ImageIcon img_Dore = new javax.swing.ImageIcon(getClass().getResource("Images/Bouledore.png"));
+    ImageIcon img_Jaune = new javax.swing.ImageIcon(getClass().getResource("Images/Boulejaune.png"));
+    ImageIcon img_Rouge = new javax.swing.ImageIcon(getClass().getResource("Images/Boulerouge.png"));
+    ImageIcon img_Verte = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleverte.png"));
+    ImageIcon img_Violette = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleviolette.png"));
+    
     private void jButton_RougeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RougeActionPerformed
         // TODO add your handling code here:
+        
+        
+        Boule="Rouge";
         i=i+1;
     }//GEN-LAST:event_jButton_RougeActionPerformed
 
     private void jButton_VertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VertActionPerformed
         // TODO add your handling code here:
         i++;
+        Boule="Vert";
     }//GEN-LAST:event_jButton_VertActionPerformed
 
     private void jButton_DoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DoreActionPerformed
         // TODO add your handling code here:
         i++;
+        Boule="Dore";
     }//GEN-LAST:event_jButton_DoreActionPerformed
 
     private void jButton_BleuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BleuActionPerformed
         // TODO add your handling code here:
         i++;
+        Boule="Bleu";
     }//GEN-LAST:event_jButton_BleuActionPerformed
 
     private void jButton_JauneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_JauneActionPerformed
         // TODO add your handling code here:
         i++;
+        Boule="Jaune";
     }//GEN-LAST:event_jButton_JauneActionPerformed
 
     private void jButton_BlancActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BlancActionPerformed
         // TODO add your handling code here:
         i++;
+        Boule="Blanche";
     }//GEN-LAST:event_jButton_BlancActionPerformed
 
     private void jButton_VioletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VioletActionPerformed
         // TODO add your handling code here:
         i++;
+        Boule="Violet";
     }//GEN-LAST:event_jButton_VioletActionPerformed
 
     private void jButton_ArgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ArgentActionPerformed
         // TODO add your handling code here:
         i++;
+        Boule="Argent";
     }//GEN-LAST:event_jButton_ArgentActionPerformed
 
     /**
@@ -250,5 +280,9 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Vert;
     private javax.swing.JButton jButton_Violet;
     // End of variables declaration//GEN-END:variables
+
+    private void setIcon(ImageIcon img_Argent) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
-}
+

@@ -20,11 +20,35 @@ public class Partie {
     
 public void creationCode(){
     int var;
+    String boule="rien";
     Random Aleat = new Random();
     for (int i=0; i<4; i++){
-        var = Aleat.nextInt(8)-1;
-        
-        code[i]=
+        var = Aleat.nextInt(8);
+        if (var==1){
+            boule="Argent";
+        }
+        if (var==2){
+            boule="Rouge";
+        }
+        if (var==3){
+            boule="Dore";
+        }
+        if (var==4){
+            boule="Vert";
+        }
+        if (var==5){
+            boule="Blanc";
+        }
+        if (var==6){
+            boule="Bleu";
+        }
+        if (var==7){
+            boule="Jaune";
+        }
+        if (var==8){
+            boule="Violet";
+        }
+        code[i]= boule;
     }
 }
 }

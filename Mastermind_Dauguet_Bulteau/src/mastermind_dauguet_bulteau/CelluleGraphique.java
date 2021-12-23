@@ -7,12 +7,13 @@ package mastermind_dauguet_bulteau;
 import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 
 /**
  *
  * @author bulte
  */
-public class CelluleGraphique {
+public class CelluleGraphique extends JButton{
     Cellule celluleAssociee;
     //ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/Image/celluleVide.png")) ;
     ImageIcon img_Argent = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleargent.png"));
@@ -29,10 +30,11 @@ public class CelluleGraphique {
     public CelluleGraphique (Cellule uneCellule) {
         celluleAssociee = uneCellule ;
     }
+    @Override
     public void paintComponent (Graphics G){
         super.paintComponent(G);
+        
     }
-    void addActionListener(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
 }
