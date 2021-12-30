@@ -262,6 +262,7 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Fenetre_de_Jeu().setVisible(true);
             }

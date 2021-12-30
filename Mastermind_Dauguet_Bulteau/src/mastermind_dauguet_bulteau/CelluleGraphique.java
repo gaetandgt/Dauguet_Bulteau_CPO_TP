@@ -25,7 +25,14 @@ public class CelluleGraphique extends JButton{
     ImageIcon img_Verte = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleverte.png"));
     ImageIcon img_Violette = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleviolette.png"));
     
-    
+    ImageIcon img_Argent75 = new javax.swing.ImageIcon(getClass().getResource("Images/Argent.png"));
+    ImageIcon img_Blanche75 = new javax.swing.ImageIcon(getClass().getResource("Images/Blanc.png"));
+    ImageIcon img_Bleu75 = new javax.swing.ImageIcon(getClass().getResource("Images/Bleu.png"));
+    ImageIcon img_Dore75 = new javax.swing.ImageIcon(getClass().getResource("Images/Dore.png"));
+    ImageIcon img_Jaune75 = new javax.swing.ImageIcon(getClass().getResource("Images/Jaune.png"));
+    ImageIcon img_Rouge75 = new javax.swing.ImageIcon(getClass().getResource("Images/Rouge.png"));
+    ImageIcon img_Verte75 = new javax.swing.ImageIcon(getClass().getResource("Images/Vert.png"));
+    ImageIcon img_Violette75 = new javax.swing.ImageIcon(getClass().getResource("Images/Violet.png"));
     
     public CelluleGraphique (Cellule uneCellule) {
         celluleAssociee = uneCellule ;
@@ -33,7 +40,8 @@ public class CelluleGraphique extends JButton{
     @Override
     public void paintComponent (Graphics G){
         super.paintComponent(G);
-        
+        //if (celluleAssocie.couleur)
+        //si on met toutes les images on utilises celluleAssocie pour eemplir les cases
     }
     
     

@@ -42,10 +42,11 @@ public boolean viderCellule(int ligne, int colonne){
         return false;
     }
 }
-
+/*
 public boolean ajouterCouleur(int ligne, int colonne){
     if(celluleOccupee(ligne,colonne)==false){
       CellulesJeu[ligne][colonne].couleurDefinie;
     }
 }
+*/
 }
