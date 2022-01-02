@@ -13,6 +13,7 @@ public class Cellule {
     
     
     
+    
     public Cellule(String unecouleur){
         Couleur=unecouleur;
     }
@@ -20,6 +21,10 @@ public class Cellule {
     Cellule() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
+
+    
     public String lireCouleur(){
         return(Couleur);
     }

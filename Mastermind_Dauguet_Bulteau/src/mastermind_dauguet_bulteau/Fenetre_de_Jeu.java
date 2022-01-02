@@ -4,6 +4,7 @@
  */
 package mastermind_dauguet_bulteau;
 
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 /**
@@ -14,6 +15,7 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     Joueur[] ListeJoueurs = new Joueur[2];
     Joueur joueurCourant;
     Grille grillejeu = new Grille();
+    Cellule 
 
     
         
@@ -22,7 +24,9 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
      * Creates new form Fenetre_de_Jeu
      */
     //
+    int K=0;
     int j=0;
+    String Texte= "Réacapitulatif des différents essaies";
     public Fenetre_de_Jeu() {
         initComponents();
         
@@ -32,27 +36,40 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
         
         
         
-        for (int a = 4; a >= 0; a--) {
-            for (int b = 0; b < 12; b++) {
+        for (int b = 0;b < 12; b++) {
+            for (int a = 4;  a >= 0; a--) {
                 CelluleGraphique cellGraph = new CelluleGraphique(grillejeu.CellulesJeu[a][b]);
                 cellGraph.addActionListener(new java.awt.event.ActionListener() {
                     public void actionPerformed(java.awt.event.ActionEvent evt) {
 
                         Cellule c = cellGraph.celluleAssociee;
-                        if (j!=4){
-                            test[j]=Boule;
-                            j++;
-                        }
                         if (j==4){
                             j=0;
-                            return;
                             
                         }
+                        
+                        test[j]=Boule;
+                        j++;
+                        if (j==4){
+                            j=0;
+                            String [] Commun= new String[2];
+                            //Code = creationCode()
+                            //int nb=CouleurCode(Code[], test[]);
+                            //Commun=Placepareil(Code[],test[],nb);
+                            String Newligne=System.getProperty("line.separator");
+                            
+                            K++;
+                            Texte=(Texte + Newligne +  "Test " +K+ Newligne + Commun[0]+" en commun"+ Newligne + Commun[1]+" bien placé");
+                            Message.setText(Texte);
+                        }
+                        
+                        
                         c.Couleur.equals(Boule);
                         
+                        
                         Panneau_grille.repaint();
-                        return;
-
+                        String [] Commun;
+                        
                     }
                     });
                 Panneau_grille.add(cellGraph);
@@ -82,7 +99,8 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
         jButton_Jaune = new javax.swing.JButton();
         jButton_Blanc = new javax.swing.JButton();
         jButton_Argent = new javax.swing.JButton();
-        Panneau_verification = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Message = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -90,18 +108,7 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
         Panneau_grille.setForeground(new java.awt.Color(111, 111, 151));
         Panneau_grille.setToolTipText("");
         Panneau_grille.setPreferredSize(new java.awt.Dimension(900, 300));
-
-        javax.swing.GroupLayout Panneau_grilleLayout = new javax.swing.GroupLayout(Panneau_grille);
-        Panneau_grille.setLayout(Panneau_grilleLayout);
-        Panneau_grilleLayout.setHorizontalGroup(
-            Panneau_grilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        Panneau_grilleLayout.setVerticalGroup(
-            Panneau_grilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
+        Panneau_grille.setLayout(new java.awt.GridLayout());
         getContentPane().add(Panneau_grille, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 900, 300));
 
         jButton_Vert.setText("jButton1");
@@ -168,21 +175,11 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
         });
         getContentPane().add(jButton_Argent, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 470, 120, 120));
 
-        Panneau_verification.setForeground(new java.awt.Color(111, 111, 151));
-        Panneau_verification.setToolTipText("");
+        Message.setColumns(20);
+        Message.setRows(5);
+        jScrollPane1.setViewportView(Message);
 
-        javax.swing.GroupLayout Panneau_verificationLayout = new javax.swing.GroupLayout(Panneau_verification);
-        Panneau_verification.setLayout(Panneau_verificationLayout);
-        Panneau_verificationLayout.setHorizontalGroup(
-            Panneau_verificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        Panneau_verificationLayout.setVerticalGroup(
-            Panneau_verificationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(Panneau_verification, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 500, 900, 70));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 440, 280, 140));
 
         setBounds(0, 0, 1243, 636);
     }// </editor-fold>//GEN-END:initComponents
@@ -250,6 +247,42 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    String [] code = new String [4];
+    public String [] creationCode(){
+    int var;
+    String boule="rien";
+    Random Aleat = new Random();
+    for (int i=0; i<4; i++){
+        var = Aleat.nextInt(8);
+        if (var==1){
+            boule="Argent";
+        }
+        if (var==2){
+            boule="Rouge";
+        }
+        if (var==3){
+            boule="Dore";
+        }
+        if (var==4){
+            boule="Vert";
+        }
+        if (var==5){
+            boule="Blanc";
+        }
+        if (var==6){
+            boule="Bleu";
+        }
+        if (var==7){
+            boule="Jaune";
+        }
+        if (var==8){
+            boule="Violet";
+        }
+        code[i]= boule;
+    }
+    return code;
+}
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -284,8 +317,8 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Message;
     private javax.swing.JPanel Panneau_grille;
-    private javax.swing.JPanel Panneau_verification;
     private javax.swing.JButton jButton_Argent;
     private javax.swing.JButton jButton_Blanc;
     private javax.swing.JButton jButton_Bleu;
@@ -294,6 +327,7 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     private javax.swing.JButton jButton_Rouge;
     private javax.swing.JButton jButton_Vert;
     private javax.swing.JButton jButton_Violet;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
     private void setIcon(ImageIcon img_Argent) {
