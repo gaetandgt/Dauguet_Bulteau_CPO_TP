@@ -11,15 +11,23 @@ package mastermind_dauguet_bulteau;
 public class Cellule {
     String Couleur;
     
-public Cellule(){
-    Couleur=null;
+    
+    
+    public Cellule(String unecouleur){
+        Couleur=unecouleur;
     }
 
-public String lireCouleur(){
-    return(Couleur);
-}
+    Cellule() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    public String lireCouleur(){
+        return(Couleur);
+    }
 
+
+/*
 public String ajouterCouleur(){
-    if 
+    if
 }
+*/
 }

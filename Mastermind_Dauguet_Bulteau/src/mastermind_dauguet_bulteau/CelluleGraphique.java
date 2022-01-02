@@ -13,6 +13,7 @@ import javax.swing.JButton;
  *
  * @author bulte
  */
+
 public class CelluleGraphique extends JButton{
     Cellule celluleAssociee;
     //ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/Image/celluleVide.png")) ;
@@ -33,6 +34,7 @@ public class CelluleGraphique extends JButton{
     ImageIcon img_Rouge75 = new javax.swing.ImageIcon(getClass().getResource("Images/Rouge.png"));
     ImageIcon img_Verte75 = new javax.swing.ImageIcon(getClass().getResource("Images/Vert.png"));
     ImageIcon img_Violette75 = new javax.swing.ImageIcon(getClass().getResource("Images/Violet.png"));
+    ImageIcon img_Vide = new javax.swing.ImageIcon(getClass().getResource("Images/carre.png"));
     
     public CelluleGraphique (Cellule uneCellule) {
         celluleAssociee = uneCellule ;
@@ -42,6 +44,33 @@ public class CelluleGraphique extends JButton{
         super.paintComponent(G);
         //if (celluleAssocie.couleur)
         //si on met toutes les images on utilises celluleAssocie pour eemplir les cases
+        if (celluleAssociee.lireCouleur()=="Dore"){
+            setIcon(img_Dore75);
+        }
+        else if (celluleAssociee.lireCouleur()=="Argent"){
+            setIcon(img_Argent75);
+        }
+        else if (celluleAssociee.lireCouleur()=="Jaune"){
+            setIcon(img_Jaune75);
+        }
+        else if (celluleAssociee.lireCouleur()=="Rouge"){
+            setIcon(img_Rouge75);
+        }
+        else if (celluleAssociee.lireCouleur()=="Bleu"){
+            setIcon(img_Bleu75);
+        }
+        else if (celluleAssociee.lireCouleur()=="Vert"){
+            setIcon(img_Verte75);
+        }
+        else if (celluleAssociee.lireCouleur()=="Violet"){
+            setIcon(img_Violette75);
+        }
+        else if (celluleAssociee.lireCouleur()=="Blanc"){
+            setIcon(img_Blanche75);
+        }
+        else{
+            setIcon(img_Vide);
+        }
     }
     
     

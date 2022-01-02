@@ -21,30 +21,44 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     /**
      * Creates new form Fenetre_de_Jeu
      */
+    //
     int j=0;
     public Fenetre_de_Jeu() {
         initComponents();
+        
         Panneau_grille.setVisible(true);
-        jButton_Argent.setIcon(img_Argent);
+        //jButton_Argent.setIcon(img_Argent);
         String []test= new String[4];
-        CelluleGraphique cellGraph = new CelluleGraphique(grillejeu.CellulesJeu[i][j]);
-        cellGraph.addActionListener(new java.awt.event.ActionListener() {
-        @Override
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            Cellule c = cellGraph.celluleAssociee;
-            if (j!=4){
-                test[j]=Boule;
-                j++;
-            }
-            if (j==4){
-                j=0;
-                
-            }
-            
-            
+        
+        
+        
+        for (int a = 4; a >= 0; a--) {
+            for (int b = 0; b < 12; b++) {
+                CelluleGraphique cellGraph = new CelluleGraphique(grillejeu.CellulesJeu[a][b]);
+                cellGraph.addActionListener(new java.awt.event.ActionListener() {
+                    public void actionPerformed(java.awt.event.ActionEvent evt) {
 
+                        Cellule c = cellGraph.celluleAssociee;
+                        if (j!=4){
+                            test[j]=Boule;
+                            j++;
+                        }
+                        if (j==4){
+                            j=0;
+                            return;
+                            
+                        }
+                        c.Couleur.equals(Boule);
+                        
+                        Panneau_grille.repaint();
+                        return;
+
+                    }
+                    });
+                Panneau_grille.add(cellGraph);
+            }
         }
-        });
+                
         
        
         
@@ -218,7 +232,7 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     private void jButton_BlancActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BlancActionPerformed
         // TODO add your handling code here:
         i++;
-        Boule="Blanche";
+        Boule="Blanc";
     }//GEN-LAST:event_jButton_BlancActionPerformed
 
     private void jButton_VioletActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_VioletActionPerformed
@@ -285,5 +299,7 @@ public class Fenetre_de_Jeu extends javax.swing.JFrame {
     private void setIcon(ImageIcon img_Argent) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    
 }
 

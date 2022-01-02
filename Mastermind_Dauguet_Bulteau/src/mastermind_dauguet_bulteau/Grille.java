@@ -20,6 +20,8 @@ public Grille (){
     }
 }
 
+    
+
 public String lireCouleurDeLaCellule(int ligne, int colonne){
     return CellulesJeu[ligne][colonne].lireCouleur();
 }
