@@ -13,17 +13,16 @@ public class Partie {
     Grille grillejeu;
     String [] code = new String [4];
     String [] CodeJoueur = new String [4];
-    public void initialiserPartie(){
-        
-    }
+    
 
     
 public void creationCode(){
     int var;
     String boule="rien";
     Random Aleat = new Random();
+    //Créer le code aléatoirement
     for (int i=0; i<4; i++){
-        var = Aleat.nextInt(8);
+        var = Aleat.nextInt(8);//tirage aléatoire entre 1 et 8
         if (var==1){
             boule="Argent";
         }

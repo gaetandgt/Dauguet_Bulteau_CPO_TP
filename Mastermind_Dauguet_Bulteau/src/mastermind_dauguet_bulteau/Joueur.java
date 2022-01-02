@@ -18,6 +18,7 @@ public Joueur(String unNom){
 }
 
 public boolean JoueUnCoup(){
+    //le joueur peu proposer 12 codes et joue donc 48 fois
     if(nbCoupsRestants==0){
         return false;
     }

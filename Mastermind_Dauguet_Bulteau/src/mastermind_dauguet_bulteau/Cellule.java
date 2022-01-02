@@ -16,17 +16,17 @@ public class Cellule {
     
     public Cellule(String unecouleur){
         Couleur=unecouleur;
+        //constructeur 
     }
 
-    Cellule() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     
 
     
     public String lireCouleur(){
         return(Couleur);
+        //on renvoit simplement la couleur associé à la cellule
     }
 
 

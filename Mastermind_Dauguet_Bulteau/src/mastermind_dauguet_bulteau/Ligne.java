@@ -14,9 +14,10 @@ public class Ligne {
         int Nbcommun=0;
         for (int i=0; i<4; i++){
             for (int j=0; j<4; j++){
-                if (code[j]==CodeYoko[i]){
+                if (code[j]==CodeYoko[i]){//on compare si une des couleur du code de base correspond à l'une des 4 proposés par le joueu 4 fois
                     Nbcommun++;//tester si c'est fonctionnel si il y a plusieurs pion de la même couleur dans le code
                 }
+                //
             }
         }
         return Nbcommun;
@@ -27,8 +28,9 @@ public class Ligne {
         int Place=0;
         for (int i=0; i<4; i++){
 
-            if (code[i]==CodeYoko[i]){
+            if (code[i]==CodeYoko[i]){//On regarde si le placement est pareil
                 Nbcommun--;
+                //Si il est bien placé alors on a forcément une bonne couleur
                 Place++;
             }
             

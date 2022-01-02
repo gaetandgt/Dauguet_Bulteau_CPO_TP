@@ -10,12 +10,12 @@ package mastermind_dauguet_bulteau;
  */
 public class Grille {
     Cellule [][] CellulesJeu= new Cellule[4][12];
-    
+    //On crée un grille de 4 par 12
     
 public Grille (){ 
     for (int i=0;i<4;i++){
         for (int j=0;j<12;j++){
-            CellulesJeu[i][j]=new Cellule(); 
+            CellulesJeu[i][j]=new Cellule("rien"); //Les cellules ne contiennent pas de couleur au début
         }
     }
 }

@@ -16,6 +16,7 @@ import javax.swing.JButton;
 public class CelluleGraphique extends JButton{
     Cellule celluleAssociee;
     //ImageIcon img_vide = new javax.swing.ImageIcon(getClass().getResource("/Image/celluleVide.png")) ;
+    //
     ImageIcon img_Argent = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleargent.png"));
     ImageIcon img_Blanche = new javax.swing.ImageIcon(getClass().getResource("Images/Bouleblanche.png"));
     ImageIcon img_Bleu = new javax.swing.ImageIcon(getClass().getResource("Images/Boulebleu.png"));
@@ -34,6 +35,7 @@ public class CelluleGraphique extends JButton{
     ImageIcon img_Verte75 = new javax.swing.ImageIcon(getClass().getResource("Images/Vert.png"));
     ImageIcon img_Violette75 = new javax.swing.ImageIcon(getClass().getResource("Images/Violet.png"));
     ImageIcon img_Vide = new javax.swing.ImageIcon(getClass().getResource("Images/carre.png"));
+    //on appelle les images stockés dans le fichier src pour les utiliser dans l'interface graphique
     
     public CelluleGraphique (Cellule uneCellule) {
         celluleAssociee = uneCellule ;
@@ -43,6 +45,7 @@ public class CelluleGraphique extends JButton{
         super.paintComponent(G);
         //if (celluleAssocie.couleur)
         //si on met toutes les images on utilises celluleAssocie pour eemplir les cases
+        //por chaque cellule si c'est le même string on associera l'image correspondante
         if (celluleAssociee.lireCouleur()=="Dore"){
             setIcon(img_Dore75);
         }
