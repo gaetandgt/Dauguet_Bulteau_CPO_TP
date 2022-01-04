@@ -68,12 +68,7 @@ public void afficherGrilleSurConsole(){ // on affiche la grille avec les d=diff√
                     System.out.print("\033[33m O  ");
                 }
             }
-            else if(CellulesJeu[i][j].presenceTrouNoir()==true){ // on teste ensuite si il y a un trou noir da,s cette cellule, on affiche un rond violet
-                System.out.print("\033[35m O  ");
-            } 
-            else if(CellulesJeu[i][j].presenceDesintegrateur()==true){ // on teste enfin si il y a un d√©sintegrateur, seulement si il n y a pas de trou noir ou de jeton, et on affiche un rond vert.
-                System.out.print("\033[32m O  ");
-            }
+            
             else{
                 System.out.print("\033[37m O  ");
                 }

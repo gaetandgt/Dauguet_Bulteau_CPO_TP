@@ -62,9 +62,12 @@ public String[] initialiserPartie(){
             boule="Violet";
         }
         code[i]= boule;
+        
     }
+    
+    System.out.println(code);
     return (code);
-   
+    
 }
 
 Scanner sc = new Scanner(System.in) ;
@@ -90,20 +93,24 @@ public void debuterPartie(String code[]){ // c'est la plus grande partie de notr
         
         System.out.println("Tapez Bleu, Vert, Jaune, Rouge, Dore, Blanc, Argent ou Violet"); // on affiche les différentes possibilités que peut choisir le joueur pour son tour de jeu 
         String Jeu;
-        
-        for (int a=0; a<4; a++){
+        int a=0;
+         System.out.println(code);
+        while ( a<4){
             Jeu=sc.next();
             Code[a]=Jeu;
-            grillejeu.lireCouleurDuJeton(i+1,K)=Jeu;
             
+            grillejeu.afficherGrilleSurConsole(); 
+            a++;
         }
-        Commun=grillejeu.etreGagnantePourJoueur(code, Code);
-        if (Commun[1]==4){
+        int [] Pareil=new int [2];
+        Pareil=grillejeu.etreGagnantePourJoueur(code, Code);
+        if (Pareil[1]==4){
             System.out.println("Vous avez gagné");
         }
         else{
             
             Texte=(Texte  +  "Test N " +K+  ";"+ Commun[0]+" en commun"+ ";"+ Commun[1]+" bien placé\n");
+            System.out.println(Texte);
             K++;
         }
     }
