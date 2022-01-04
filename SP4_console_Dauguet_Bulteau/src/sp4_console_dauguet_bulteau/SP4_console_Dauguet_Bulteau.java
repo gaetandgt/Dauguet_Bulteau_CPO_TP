@@ -18,23 +18,23 @@ public class SP4_console_Dauguet_Bulteau {
     public static void main(String[] args) {
        Scanner sc = new Scanner(System.in) ;
        String joueur1 ; 
-       String joueur2 ;
+       
+       
 
-       System.out.println("Veuillez entrer le nom du premier joueur:") ;
+       System.out.println("Veuillez entrer votre nom:") ;
        joueur1 = sc.next() ;
        Joueur J1 = new Joueur(joueur1)  ;
 
-       System.out.println("Veuillez entrer le nom du deuxième joueur:") ;
-       joueur2 = sc.next() ;
-       Joueur J2 = new Joueur(joueur2)  ;
+       
        System.out.println(J1);
-       System.out.println(J2);
        
        
-       Partie unePartie= new Partie(J1,J2);
-       unePartie.attribuerCouleursAuxJoueurs(); 
-       unePartie.initialiserPartie();
-       unePartie.debuterPartie();
+       
+       Partie unePartie= new Partie(J1);
+        
+       String code[]= new String [4] ;
+       code=unePartie.initialiserPartie();
+       unePartie.debuterPartie(code);
     }
     
 }

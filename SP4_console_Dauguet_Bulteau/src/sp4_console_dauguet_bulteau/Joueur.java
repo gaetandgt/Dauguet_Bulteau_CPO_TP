@@ -11,7 +11,7 @@ package sp4_console_dauguet_bulteau;
 public class Joueur { // on définit la classe joueur et ses différents attributs
     String Nom;
     String Couleur;
-    Jeton [] ListeJetons= new Jeton[21];
+    Jeton [] ListeJetons= new Jeton[48];
     int nombreDesintegrateurs;
     int nombreJetonsRestants;
     
@@ -26,7 +26,7 @@ public void affecterCouleur(String uneCouleur){
 public boolean ajouterJeton(Jeton nombre){ // on ajoute un jeton dans la liste de jetons du joueur
     
     
-    if (nombreJetonsRestants!=21){
+    if (nombreJetonsRestants!=48){
         ListeJetons[nombreJetonsRestants]=nombre;
         return true;
     }
@@ -36,18 +36,7 @@ public boolean ajouterJeton(Jeton nombre){ // on ajoute un jeton dans la liste d
     
 }
 
-public void obtenirDesintegrateur(){ // on incrémente le nombre de desintégrateurs
-    nombreDesintegrateurs++;
-}
 
-public boolean utiliserDesintegrateur(){ // cette méthode décrémente le nombre de désintegrateurs si il n'est pas égal à 0
-    if (nombreDesintegrateurs==0){
-        return false;
-    }
-    else{
-        nombreDesintegrateurs--;
-        return true;
-    }
-    
-}
+
+
 }

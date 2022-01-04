@@ -10,11 +10,11 @@ package sp4_console_dauguet_bulteau;
  */
 import java.util.Random;
 public class Grille { // on crée la classe grille, qui est de la forme de notre grille de puissance 4
-    Cellule [][] CellulesJeu= new Cellule[6][7];
+    Cellule [][] CellulesJeu= new Cellule[4][12];
     
 public Grille (){ // On définit notre grille de puissance 4 d'une taille de 6 lignes et 7 colonnes grâce aux deux boucles for
-    for (int i=0;i<6;i++){
-        for (int j=0;j<7;j++){
+    for (int i=0;i<4;i++){
+        for (int j=0;j<12;j++){
             CellulesJeu[i][j]=new Cellule();
         }
     }
@@ -56,8 +56,8 @@ public void viderGrille(){ // on réinitialise chacune des cellules à null pour
 
 public void afficherGrilleSurConsole(){ // on affiche la grille avec les d=différents éléments qui peuvent se trouver dans chaque cellule
     System.out.println("affichage grille");
-    for (int i=5;i>=0;i--){
-        for (int j=0;j<7;j++){
+    for (int i=3;i>=0;i--){
+        for (int j=0;j<12;j++){
             
             if (celluleOccupee(i,j)==true){
                 
@@ -97,58 +97,34 @@ public String lireCouleurDuJeton(int num1, int num2){ // cette méthode retourne
     return CellulesJeu[num1][num2].jetonCourant.Couleur;
 }
 
-public boolean etreGagnantePourJoueur(Joueur joueur){ // cette méthode nous permet de vérifier si la grille est gagnante en parcourant celle-ci et en considérant tous les cas ou 4 jetons d'une meme couleur pourraient être alignés
-    
-    int j;
-    int i;
-    for(i=0;i<6;i++){
-    //for(j=0;j<3;j++){    
-        for(j=0;j<4;j++){
-        //for(i=0;i<6;i++){
-            if (celluleOccupee(i,j)==true && celluleOccupee(i,j+1)==true && celluleOccupee(i,j+2)==true && celluleOccupee(i,j+3)==true){ // on teste sur une colonne
-                if (CellulesJeu[i][j].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[i][j+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[i][j+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[i][j+3].jetonCourant.Couleur==joueur.Couleur){
-                    return true;
-                }
+public int[] etreGagnantePourJoueur(String code[], String CodeYoko[]){ // cette méthode nous permet de vérifier si la grille est gagnante en parcourant celle-ci et en considérant tous les cas ou 4 jetons d'une meme couleur pourraient être alignés
+    int Nbcommun=0;
+    for (int i=0; i<4; i++){
+        for (int j=0; j<4; j++){
+            if (code[j]==CodeYoko[i]){//on compare si une des couleur du code de base correspond à l'une des 4 proposés par le joueu 4 fois
+                Nbcommun++;//tester si c'est fonctionnel si il y a plusieurs pion de la même couleur dans le code
             }
+            //
         }
     }
-    for(j=0;j<3;j++){
-        
-        
-        for(i=0;i<7;i++){
-            if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i)==true && celluleOccupee(j+2,i)==true && celluleOccupee(j+3,i)==true){ // on teste sur une ligne
-                if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i].jetonCourant.Couleur==joueur.Couleur){
-                    return true;
-                }
+    int[] Commun=new int [2];
+        int Place=0;
+        for (int i=0; i<4; i++){
+
+            if (code[i]==CodeYoko[i]){//On regarde si le placement est pareil
+                Nbcommun--;
+                //Si il est bien placé alors on a forcément une bonne couleur
+                Place++;
             }
+            
         }
-    }
-    
-    for(j=0;j<3;j++){
-        
-        for(i=0;i<4;i++){
-            if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i+1)==true && celluleOccupee(j+2,i+2)==true && celluleOccupee(j+3,i+3)==true){ // on teste en diagonale
-                if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i+1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i+2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i+3].jetonCourant.Couleur==joueur.Couleur){
-                    return true;
-                }
-            }
-        }
-    }
-    
-    for(j=0;j<3;j++){
-        
-        for(i=6;i>3;i--){
-            if (celluleOccupee(j,i)==true && celluleOccupee(j+1,i-1)==true && celluleOccupee(j+2,i-2)==true && celluleOccupee(j+3,i-3)==true){ // on teste sur l'autre diagonale
-                if (CellulesJeu[j][i].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+1][i-1].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+2][i-2].jetonCourant.Couleur==joueur.Couleur && CellulesJeu[j+3][i-3].jetonCourant.Couleur==joueur.Couleur){
-                    return true;
-                }
-            }
-        }
-    }
-    
-    return false;
+    Commun[0]=Nbcommun;
+    Commun[1]=Place;
+    return (Commun);
     
 }
+
+
 
 public void tasserGrille(int numC){ // cette méthode permet de tasser la grille si une cellule ne contient pas de jeton et que celles au dessus en contiennent. Le tassement esyt fait dans tous les cas mais n'a aucune conséquence quand il n'y a plus de jeton
     for(int i=0 ; i<6 ; i++){
@@ -170,25 +146,9 @@ public boolean colonneRemplie(int col){ // on teste la dernière ligne d'une col
     }
 }
 
-public boolean placerDesintegrateur(int lg, int cln){ // cette méthode permet de placer un désintegrateur sur la cellule de coordonnees lg cln si il n'y en a pas déjà un
-    if(CellulesJeu[lg][cln].presenceDesintegrateur()==false){
-        CellulesJeu[lg][cln].placerDesintegrateur();
-        return true;
-    }
-    else{
-        return false;
-    }
-}
 
-public boolean placerTrouNoir(int lg, int cln){ // cette méthode permet de placer un trou noir sur la cellule de coordonnees lg cln si il n'y en a pas déjà un
-    if(CellulesJeu[lg][cln].presenceTrouNoir()==false){
-        CellulesJeu[lg][cln].placerTrouNoir();
-        return true;
-    }
-    else{
-        return false;
-    }
-}
+
+
 
 public boolean supprimerJeton(int lg, int cln){ // on supprime le jeton présent dans une cellule de coordonnees lg cln, s'il y en a un. L'attribut jetonCourant de celle-ci redevient null
     if(celluleOccupee(lg,cln)==true){
@@ -200,11 +160,7 @@ public boolean supprimerJeton(int lg, int cln){ // on supprime le jeton présent
     }
 }
 
-public Jeton recupererJeton(int lg, int cln){ // cette méthode nous permet de récupérer un jeton dans la cellule de coordonnées lg cln
-     Jeton recupJetonVar = CellulesJeu[lg][cln].recupererJeton();
-     CellulesJeu[lg][cln].jetonCourant=null;
-     return recupJetonVar;
-}
+
 
 }
 
