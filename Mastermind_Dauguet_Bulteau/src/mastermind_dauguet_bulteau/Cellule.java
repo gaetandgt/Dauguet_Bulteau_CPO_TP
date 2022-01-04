@@ -6,7 +6,7 @@ package mastermind_dauguet_bulteau;
 
 /**
  *
- * @author gaeta
+ * @author gaeta 
  */
 public class Cellule {
     String Couleur;
